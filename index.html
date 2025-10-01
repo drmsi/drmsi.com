@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRMSI - Professional Trading Signals & Market Analysis</title>
+    <meta name="description" content="Professional forex and crypto trading signals, real-time market analysis, and educational resources for traders.">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0f0f0f;
+            --bg-secondary: #1a1a1a;
+            --bg-card: #1f1f1f;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent-gold: #fbbf24;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --border-color: #2a2a2a;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-gold);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-gold), #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-gold);
+            color: var(--bg-primary);
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.3);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section */
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+        }
+
+        /* Live Market Tickers */
+        .market-tickers {
+            background: var(--bg-secondary);
+            padding: 2rem 0;
+            overflow: hidden;
+        }
+
+        .ticker-container {
+            display: flex;
+            gap: 2rem;
+            animation: scroll 30s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--bg-card);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            white-space: nowrap;
+            min-width: 200px;
+        }
+
+        .ticker-symbol {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .ticker-price {
+            color: var(--accent-gold);
+        }
+
+        .ticker-change.positive {
+            color: var(--accent-green);
+        }
+
+        .ticker-change.negative {
+            color: var(--accent-red);
+        }
+
+        /* TradingView Widget Container */
+        .tradingview-widget {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 2rem 0;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Gold Chart Section */
+        .gold-chart-section {
+            background: var(--bg-secondary);
+            padding: 3rem 0;
+        }
+
+        /* Articles Grid */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .article-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.1);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #1f1f1f, #2a2a2a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+        }
+
+        .article-content {
+            padding: 1.5rem;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .article-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .article-excerpt {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .article-link {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .article-link:hover {
+            text-decoration: underline;
+        }
+
+        .load-more-btn {
+            display: block;
+            margin: 3rem auto 0;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            padding: 1rem 3rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s, border-color 0.3s;
+        }
+
+        .load-more-btn:hover {
+            background: var(--bg-secondary);
+            border-color: var(--accent-gold);
+        }
+
+        /* Education Section */
+        .education-section {
+            background: var(--bg-secondary);
+        }
+
+        .education-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .education-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .education-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-gold);
+        }
+
+        .resource-list {
+            list-style: none;
+        }
+
+        .resource-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .resource-list li:last-child {
+            border-bottom: none;
+        }
+
+        .resource-list a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .resource-list a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--bg-card);
+            border-radius: 50%;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-gold);
+            color: var(--bg-primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--bg-primary);
+                border-bottom: 1px solid var(--border-color);
+                padding: 1rem 2rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .articles-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .articles-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="/" class="logo">DRMSI</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#analysis">Analysis</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Professional Trading Intelligence</h1>
+        <p>Real-time market analysis, trading signals, and educational resources for serious traders</p>
+        <a href="#analysis" class="cta-button">Explore Market Analysis</a>
+    </section>
+
+    <!-- Live Market Tickers -->
+    <div class="market-tickers">
+        <div class="ticker-container">
+            <!-- Duplicate for infinite scroll effect -->
+            <div class="ticker-item">
+                <span class="ticker-symbol">EUR/USD</span>
+                <span class="ticker-price">1.0852</span>
+                <span class="ticker-change positive">+0.45%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">GBP/USD</span>
+                <span class="ticker-price">1.2634</span>
+                <span class="ticker-change negative">-0.23%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">BTC/USD</span>
+                <span class="ticker-price">48,523</span>
+                <span class="ticker-change positive">+2.34%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">XAU/USD</span>
+                <span class="ticker-price">2,042</span>
+                <span class="ticker-change positive">+0.87%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">ETH/USD</span>
+                <span class="ticker-price">2,634</span>
+                <span class="ticker-change positive">+3.12%</span>
+            </div>
+            <!-- Duplicate items for seamless loop -->
+            <div class="ticker-item">
+                <span class="ticker-symbol">EUR/USD</span>
+                <span class="ticker-price">1.0852</span>
+                <span class="ticker-change positive">+0.45%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">GBP/USD</span>
+                <span class="ticker-price">1.2634</span>
+                <span class="ticker-change negative">-0.23%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">BTC/USD</span>
+                <span class="ticker-price">48,523</span>
+                <span class="ticker-change positive">+2.34%</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gold Chart Section -->
+    <section class="gold-chart-section">
+        <div class="container">
+            <h2 class="section-title">Gold Price Chart</h2>
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget">
+                <div class="tradingview-widget-container" style="height:400px">
+                    <div id="tradingview_gold_chart"></div>
+                </div>
+            </div>
+            <!-- TradingView Widget END -->
+        </div>
+    </section>
+
+    <!-- Latest Market Analysis -->
+    <section id="analysis">
+        <div class="container">
+            <h2 class="section-title">Latest Market Analysis</h2>
+            
+            <!-- Articles Grid - n8n will populate this -->
+            <div class="articles-grid" id="articlesGrid">
+                <!-- N8N_ARTICLES_START - Do not remove this comment -->
+
+                <!-- Sample articles will be replaced by n8n workflow -->
+                <article class="article-card" data-date="2025-10-01T10:00:00Z">
+                    <div class="article-image">
+                        <span>📊 Forex</span>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span>📅 Oct 1, 2025</span>
+                            <span>🏷️ Forex</span>
+                        </div>
+                        <h3 class="article-title">EUR/USD Technical Analysis</h3>
+                        <p class="article-excerpt">EUR/USD breaks key resistance at 1.0850, signaling potential bullish continuation with strong momentum indicators...</p>
+                        <a href="articles/eurusd-analysis-2025-10-01.html" class="article-link">Read Analysis →</a>
+                    </div>
+                </article>
+
+                <article class="article-card" data-date="2025-10-01T06:00:00Z">
+                    <div class="article-image">
+                        <span>₿ Crypto</span>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span>📅 Oct 1, 2025</span>
+                            <span>🏷️ Crypto</span>
+                        </div>
+                        <h3 class="article-title">Bitcoin Price Prediction</h3>
+                        <p class="article-excerpt">BTC surges past $48,000 resistance level with increasing institutional demand and bullish on-chain metrics...</p>
+                        <a href="articles/btcusd-analysis-2025-10-01.html" class="article-link">Read Analysis →</a>
+                    </div>
+                </article>
+
+                <article class="article-card" data-date="2025-09-30T18:00:00Z">
+                    <div class="article-image">
+                        <span>🪙 Commodities</span>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span>📅 Sep 30, 2025</span>
+                            <span>🏷️ Commodities</span>
+                        </div>
+                        <h3 class="article-title">Gold Reaches New Highs</h3>
+                        <p class="article-excerpt">Gold prices climb to $2,042 as inflation concerns and geopolitical tensions drive safe-haven demand...</p>
+                        <a href="articles/xauusd-analysis-2025-09-30.html" class="article-link">Read Analysis →</a>
+                    </div>
+                </article>
+
+                <article class="article-card" data-date="2025-09-30T12:00:00Z">
+                    <div class="article-image">
+                        <span>📈 Forex</span>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span>📅 Sep 30, 2025</span>
+                            <span>🏷️ Forex</span>
+                        </div>
+                        <h3 class="article-title">GBP/USD Weekly Forecast</h3>
+                        <p class="article-excerpt">Sterling shows strength against dollar as UK economic data surprises to the upside, technical outlook remains bullish...</p>
+                        <a href="articles/gbpusd-analysis-2025-09-30.html" class="article-link">Read Analysis →</a>
+                    </div>
+                </article>
+
+                <article class="article-card" data-date="2025-09-29T14:00:00Z">
+                    <div class="article-image">
+                        <span>📊 Stocks</span>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span>📅 Sep 29, 2025</span>
+                            <span>🏷️ Stocks</span>
+                        </div>
+                        <h3 class="article-title">AAPL Technical Outlook</h3>
+                        <p class="article-excerpt">Apple stock tests critical support levels as market anticipates earnings report. Technical indicators show mixed signals...</p>
+                        <a href="articles/aapl-analysis-2025-09-29.html" class="article-link">Read Analysis →</a>
+                    </div>
+                </article>
+
+                <article class="article-card" data-date="2025-09-29T08:00:00Z">
+                    <div class="article-image">
+                        <span>₿ Crypto</span>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span>📅 Sep 29, 2025</span>
+                            <span>🏷️ Crypto</span>
+                        </div>
+                        <h3 class="article-title">Ethereum Market Analysis</h3>
+                        <p class="article-excerpt">ETH shows strong momentum above $2,600 with increasing DeFi activity and network upgrades driving bullish sentiment...</p>
+                        <a href="articles/ethusd-analysis-2025-09-29.html" class="article-link">Read Analysis →</a>
+                    </div>
+                </article>
+
+                <!-- N8N_ARTICLES_END - Do not remove this comment -->
+            </div>
+
+            <button class="load-more-btn" id="loadMoreBtn">Load More Articles</button>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="education-section" id="education">
+        <div class="container">
+            <h2 class="section-title">Trading Education</h2>
+            <p style="text-align: center; color: var(--text-secondary); max-width: 600px; margin: 0 auto 3rem;">
+                Start your trading journey with our curated educational resources
+            </p>
+
+            <div class="education-categories">
+                <!-- Books Section -->
+                <div class="education-card">
+                    <h3>📚 Recommended Books</h3>
+                    <ul class="resource-list">
+                        <li><a href="#" target="_blank">📖 Technical Analysis of Financial Markets</a></li>
+                        <li><a href="#" target="_blank">📖 Trading in the Zone - Mark Douglas</a></li>
+                        <li><a href="#" target="_blank">📖 Japanese Candlestick Charting</a></li>
+                        <li><a href="#" target="_blank">📖 Market Wizards - Jack Schwager</a></li>
+                        <li><a href="#" target="_blank">📖 The Intelligent Investor</a></li>
+                    </ul>
+                </div>
+
+                <!-- PDF Resources -->
+                <div class="education-card">
+                    <h3>📄 Free PDF Guides</h3>
+                    <ul class="resource-list">
+                        <li><a href="#" download>📥 Forex Trading Basics (PDF)</a></li>
+                        <li><a href="#" download>📥 Risk Management Guide (PDF)</a></li>
+                        <li><a href="#" download>📥 Candlestick Patterns Cheat Sheet</a></li>
+                        <li><a href="#" download>📥 Trading Psychology Guide</a></li>
+                        <li><a href="#" download>📥 Technical Indicators Explained</a></li>
+                    </ul>
+                </div>
+
+                <!-- YouTube Channels -->
+                <div class="education-card">
+                    <h3>🎥 YouTube Channels</h3>
+                    <ul class="resource-list">
+                        <li><a href="https://youtube.com" target="_blank">▶️ The Trading Channel</a></li>
+                        <li><a href="https://youtube.com" target="_blank">▶️ Forex School Online</a></li>
+                        <li><a href="https://youtube.com" target="_blank">▶️ Rayner Teo Trading</a></li>
+                        <li><a href="https://youtube.com" target="_blank">▶️ No Nonsense Forex</a></li>
+                        <li><a href="https://youtube.com" target="_blank">▶️ The Chart Guys</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>DRMSI</h4>
+                    <p style="color: var(--text-secondary);">Professional trading signals and market analysis for forex, crypto, and commodities traders.</p>
+                    <div class="social-links" style="margin-top: 1rem;">
+                        <a href="https://twitter.com/drmsi" target="_blank" title="Twitter">𝕏</a>
+                        <a href="https://t.me/drmsi" target="_blank" title="Telegram">✈</a>
+                        <a href="https://youtube.com/@drmsi" target="_blank" title="YouTube">▶</a>
+                        <a href="https://instagram.com/drmsi" target="_blank" title="Instagram">📷</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#analysis">Market Analysis</a></li>
+                        <li><a href="#education">Education</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Trading Signals</a></li>
+                        <li><a href="#">Market News</a></li>
+                        <li><a href="#">Economic Calendar</a></li>
+                        <li><a href="#">Trading Tools</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Risk Disclosure</a></li>
+                        <li><a href="#">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 DRMSI. All rights reserved. Trading involves substantial risk of loss.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- TradingView Widget Script -->
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <script type="text/javascript">
+        // Initialize TradingView Gold Chart
+        new TradingView.widget({
+            "autosize": true,
+            "symbol": "OANDA:XAUUSD",
+            "interval": "D",
+            "timezone": "Etc/UTC",
+            "theme": "dark",
+            "style": "1",
+            "locale": "en",
+            "toolbar_bg": "#0f0f0f",
+            "enable_publishing": false,
+            "allow_symbol_change": true,
+            "container_id": "tradingview_gold_chart",
+            "height": 400
+        });
+    </script>
+
+    <!-- Mobile Menu Toggle -->
+    <script>
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Load More Button functionality
+        document.getElementById('loadMoreBtn').addEventListener('click', function() {
+            // Get all article cards
+            const articlesGrid = document.getElementById('articlesGrid');
+            const allArticles = articlesGrid.querySelectorAll('.article-card');
+
+            // Find hidden articles
+            const hiddenArticles = Array.from(allArticles).filter(article => {
+                return article.style.display === 'none';
+            });
+
+            // Show next 6 articles
+            hiddenArticles.slice(0, 6).forEach(article => {
+                article.style.display = 'block';
+            });
+
+            // Hide button if no more articles
+            if (hiddenArticles.length <= 6) {
+                this.style.display = 'none';
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+
+    <!-- n8n Integration Documentation -->
+    <!--
+        ====================================
+        N8N HYBRID ARTICLE INTEGRATION GUIDE
+        ====================================
+
+        This page is prepared to receive automatic article updates from n8n workflow.
+
+        ARTICLE INJECTION MARKERS:
+        - Between comments: N8N_ARTICLES_START and N8N_ARTICLES_END
+        - n8n should replace ALL content between these markers
+        - Latest 6 articles should be shown (sorted by data-date attribute, newest first)
+
+        ARTICLE CARD STRUCTURE:
+        Each article must follow this exact HTML structure:
+
+        <article class="article-card" data-date="2025-10-01T10:00:00Z">
+            <div class="article-image">
+                <span>📊 Category Icon</span>
+            </div>
+            <div class="article-content">
+                <div class="article-meta">
+                    <span>📅 Oct 1, 2025</span>
+                    <span>🏷️ Category</span>
+                </div>
+                <h3 class="article-title">Your Article Title (Max 60 chars)</h3>
+                <p class="article-excerpt">Your summary here (Max 150 chars)...</p>
+                <a href="articles/symbol-analysis-yyyy-mm-dd.html" class="article-link">Read Analysis →</a>
+            </div>
+        </article>
+
+        CATEGORY ICONS:
+        - Forex: 📊 Forex
+        - Crypto: ₿ Crypto
+        - Commodities: 🪙 Commodities
+        - Stocks: 📈 Stocks
+
+        N8N WORKFLOW STEPS:
+        1. Generate article HTML card (as above)
+        2. Create full article page in /articles/ folder
+        3. Read current index.html from GitHub
+        4. Extract content between N8N_ARTICLES_START and N8N_ARTICLES_END
+        5. Prepend new article to existing articles
+        6. Keep only latest 6 articles (sorted by data-date)
+        7. Replace content between markers with updated articles
+        8. Commit updated index.html to GitHub
+
+        FULL ARTICLE PAGE TEMPLATE:
+        Create as: articles/{symbol}-analysis-{yyyy-mm-dd}.html
+        Should include:
+        - Full article content from AI
+        - Price data summary
+        - Technical analysis details
+        - Back to home link: <a href="/">← Back to Home</a>
+        - Risk disclaimer footer
+
+        FILE NAMING CONVENTION:
+        - Homepage card: Injected into index.html
+        - Full article: articles/btcusd-analysis-2025-10-01.html
+        - Use lowercase, hyphens for spaces
+        - Include date in filename for uniqueness
+
+        AUTOMATIC SORTING:
+        - Articles sorted by data-date attribute (ISO 8601 format)
+        - Newest articles appear first
+        - Load More button shows older articles (if more than 6 exist)
+    -->
+</body>
+</html>

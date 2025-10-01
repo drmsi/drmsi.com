@@ -1,0 +1,211 @@
+{
+  "name": "DRMSI Auto Article Publisher",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 */4 * * *"
+            }
+          ]
+        }
+      },
+      "name": "Schedule Every 4 Hours",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [250, 300],
+      "id": "schedule-trigger"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "name": "symbols",
+              "value": "={{ [\"XAUUSD\", \"XAGUSD\", \"BTCUSD\", \"ETHUSD\", \"XRPUSD\", \"XLMUSD\", \"SOLUSD\", \"EURUSD\", \"GBPUSD\", \"USDJPY\", \"AUDUSD\", \"USDCAD\", \"MSFT\", \"AAPL\", \"AMZN\", \"GOOGL\", \"TSLA\"] }}",
+              "type": "array"
+            },
+            {
+              "name": "selectedSymbols",
+              "value": "={{ $json.symbols.slice(0, 4) }}",
+              "type": "array"
+            }
+          ]
+        }
+      },
+      "name": "Select 4 Random Symbols",
+      "type": "n8n-nodes-base.set",
+      "position": [450, 300],
+      "id": "select-symbols"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Rotate through symbols based on time\nconst allSymbols = $input.first().json.symbols;\nconst hour = new Date().getHours();\n\n// Select 4 symbols based on time of day\nlet selectedSymbols;\n\nif (hour >= 0 && hour < 6) {\n  // Night: Crypto focus\n  selectedSymbols = ['BTCUSD', 'ETHUSD', 'SOLUSD', 'XRPUSD'];\n} else if (hour >= 6 && hour < 12) {\n  // Morning: Forex + Gold\n  selectedSymbols = ['EURUSD', 'GBPUSD', 'XAUUSD', 'USDJPY'];\n} else if (hour >= 12 && hour < 18) {\n  // Afternoon: Stocks + Crypto\n  selectedSymbols = ['AAPL', 'MSFT', 'BTCUSD', 'ETHUSD'];\n} else {\n  // Evening: Mixed\n  selectedSymbols = ['XAUUSD', 'XAGUSD', 'AMZN', 'SOLUSD'];\n}\n\nreturn selectedSymbols.map(symbol => ({ symbol }));"
+      },
+      "name": "Smart Symbol Selection",
+      "type": "n8n-nodes-base.code",
+      "position": [650, 300],
+      "id": "smart-selection"
+    },
+    {
+      "parameters": {
+        "url": "=https://query1.finance.yahoo.com/v8/finance/chart/{{ $json.symbol }}",
+        "options": {
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "interval",
+                "value": "1d"
+              },
+              {
+                "name": "range",
+                "value": "5d"
+              }
+            ]
+          }
+        }
+      },
+      "name": "Fetch Price Data (Yahoo Finance)",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [850, 300],
+      "id": "fetch-price"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse Yahoo Finance data\nconst data = $input.first().json;\nconst symbol = $input.first().json.chart?.result?.[0]?.meta?.symbol || 'UNKNOWN';\n\nconst meta = data.chart?.result?.[0]?.meta || {};\nconst quotes = data.chart?.result?.[0]?.indicators?.quote?.[0] || {};\n\nconst currentPrice = meta.regularMarketPrice || meta.previousClose || 0;\nconst previousClose = meta.previousClose || 0;\nconst change = currentPrice - previousClose;\nconst changePercent = previousClose > 0 ? ((change / previousClose) * 100).toFixed(2) : 0;\n\nconst high = quotes.high?.slice(-5) || [];\nconst low = quotes.low?.slice(-5) || [];\n\nconst highPrice = Math.max(...high.filter(v => v !== null));\nconst lowPrice = Math.min(...low.filter(v => v !== null));\n\n// Determine asset type\nlet assetType = 'Forex';\nlet category = '💱 Forex';\n\nif (symbol.includes('XAU') || symbol.includes('XAG')) {\n  assetType = 'Commodities';\n  category = '🪙 Commodities';\n} else if (symbol.includes('BTC') || symbol.includes('ETH') || symbol.includes('XRP') || symbol.includes('SOL') || symbol.includes('XLM')) {\n  assetType = 'Crypto';\n  category = '₿ Crypto';\n} else if (['AAPL', 'MSFT', 'AMZN', 'GOOGL', 'TSLA'].includes(symbol)) {\n  assetType = 'Stocks';\n  category = '📈 Stocks';\n}\n\n// Generate trend analysis\nlet trend = 'neutral';\nlet trendEmoji = '➡️';\n\nif (changePercent > 1) {\n  trend = 'bullish';\n  trendEmoji = '📈';\n} else if (changePercent < -1) {\n  trend = 'bearish';\n  trendEmoji = '📉';\n}\n\nreturn {\n  symbol,\n  assetType,\n  category,\n  currentPrice: currentPrice.toFixed(2),\n  previousClose: previousClose.toFixed(2),\n  change: change.toFixed(2),\n  changePercent,\n  highPrice: highPrice.toFixed(2),\n  lowPrice: lowPrice.toFixed(2),\n  trend,\n  trendEmoji,\n  timestamp: new Date().toISOString()\n};"
+      },
+      "name": "Process Market Data",
+      "type": "n8n-nodes-base.code",
+      "position": [1050, 300],
+      "id": "process-data"
+    },
+    {
+      "parameters": {
+        "content": "=You are a professional trading analyst writing for DRMSI trading community.\n\nWrite a comprehensive market analysis article for {{ $json.symbol }}.\n\nCurrent Market Data:\n- Symbol: {{ $json.symbol }}\n- Current Price: {{ $json.currentPrice }}\n- 24h Change: {{ $json.changePercent }}%\n- Trend: {{ $json.trend }}\n- 5-day High: {{ $json.highPrice }}\n- 5-day Low: {{ $json.lowPrice }}\n\nCreate an article with the following structure:\n\n1. Catchy title (max 60 characters)\n2. Summary (1-2 sentences, max 150 characters)\n3. Market Overview section (2-3 paragraphs)\n4. Technical Analysis section with:\n   - Current price action\n   - Support and resistance levels (calculate realistic levels based on price)\n   - Trend analysis\n   - Key technical indicators (RSI, MACD signals)\n5. Trading Outlook section\n6. Risk factors to watch\n\nFormat requirements:\n- Professional but accessible tone\n- Use specific numbers and percentages\n- Include actionable insights\n- Avoid making guarantees or financial advice\n- Length: 400-500 words\n- Use markdown formatting\n\nReturn ONLY the article content in markdown format, no extra commentary.",
+        "options": {}
+      },
+      "name": "Generate Article with AI (OpenAI/Gemini)",
+      "type": "n8n-nodes-base.openAi",
+      "position": [1250, 300],
+      "id": "ai-generate",
+      "credentials": {
+        "openAiApi": {
+          "id": "1",
+          "name": "OpenAI API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Create article metadata and content\nconst marketData = $input.first().json;\nconst aiContent = $input.all()[1].json.message?.content || '';\n\nconst date = new Date();\nconst dateStr = date.toISOString().split('T')[0];\nconst slug = `${marketData.symbol.toLowerCase()}-analysis-${dateStr}`;\n\n// Extract title from AI content (first line with #)\nconst titleMatch = aiContent.match(/^#\\s*(.+)$/m);\nconst title = titleMatch ? titleMatch[1].trim() : `${marketData.symbol} Market Analysis - ${dateStr}`;\n\n// Extract summary (first paragraph after title)\nconst summaryMatch = aiContent.match(/^#{1,2}\\s*.+\\n\\n(.+?)\\n/m);\nconst summary = summaryMatch ? summaryMatch[1].substring(0, 150) : `${marketData.symbol} analysis for ${dateStr}`;\n\n// Create full HTML article card for homepage\nconst articleCard = `\n<article class=\"article-card\" data-date=\"${date.toISOString()}\">\n    <div class=\"article-image\">\n        <span>${marketData.category}</span>\n    </div>\n    <div class=\"article-content\">\n        <div class=\"article-meta\">\n            <span>📅 ${date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>\n            <span>🏷️ ${marketData.assetType}</span>\n        </div>\n        <h3 class=\"article-title\">${title}</h3>\n        <p class=\"article-excerpt\">${summary}...</p>\n        <a href=\"/articles/${slug}.html\" class=\"article-link\">Read Analysis →</a>\n    </div>\n</article>`;\n\n// Create standalone article page HTML\nconst articlePageHTML = `<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>${title} | DRMSI</title>\n    <meta name=\"description\" content=\"${summary}\">\n    <link rel=\"stylesheet\" href=\"/style.css\">\n</head>\n<body>\n    <header>\n        <nav>\n            <a href=\"/\" class=\"logo\">DRMSI</a>\n            <ul class=\"nav-links\">\n                <li><a href=\"/\">Home</a></li>\n                <li><a href=\"/#analysis\">Analysis</a></li>\n                <li><a href=\"/#education\">Education</a></li>\n            </ul>\n        </nav>\n    </header>\n    \n    <main style=\"max-width: 800px; margin: 100px auto; padding: 2rem;\">\n        <article>\n            <div style=\"margin-bottom: 2rem;\">\n                <div style=\"color: #a0a0a0; margin-bottom: 1rem;\">\n                    <span>📅 ${date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>\n                    <span style=\"margin: 0 1rem;\">•</span>\n                    <span>${marketData.category} ${marketData.assetType}</span>\n                </div>\n                <h1 style=\"font-size: 2.5rem; margin-bottom: 1rem; color: #fbbf24;\">${title}</h1>\n                <div style=\"background: #1f1f1f; padding: 1rem; border-radius: 8px; margin-bottom: 2rem;\">\n                    <p style=\"margin: 0;\"><strong>Current Price:</strong> $${marketData.currentPrice} ${marketData.trendEmoji}</p>\n                    <p style=\"margin: 0.5rem 0 0 0;\"><strong>24h Change:</strong> <span style=\"color: ${parseFloat(marketData.changePercent) >= 0 ? '#10b981' : '#ef4444'}\">${marketData.changePercent}%</span></p>\n                </div>\n            </div>\n            \n            <div class=\"article-body\" style=\"line-height: 1.8; color: #e0e0e0;\">\n                ${aiContent.replace(/^#\\s*.+$/m, '')}\n            </div>\n            \n            <div style=\"margin-top: 3rem; padding: 2rem; background: #1f1f1f; border-radius: 8px;\">\n                <p style=\"color: #a0a0a0; margin: 0;\"><strong>⚠️ Disclaimer:</strong> This analysis is for educational purposes only and should not be considered as financial advice. Always conduct your own research and consult with a financial advisor before making trading decisions.</p>\n            </div>\n            \n            <div style=\"margin-top: 2rem; text-align: center;\">\n                <a href=\"/\" style=\"color: #fbbf24; text-decoration: none; font-weight: 600;\">← Back to Home</a>\n            </div>\n        </article>\n    </main>\n</body>\n</html>`;\n\nreturn {\n  symbol: marketData.symbol,\n  slug,\n  title,\n  summary,\n  articleCard,\n  articlePageHTML,\n  dateStr,\n  assetType: marketData.assetType,\n  category: marketData.category\n};"
+      },
+      "name": "Format Article HTML",
+      "type": "n8n-nodes-base.code",
+      "position": [1450, 300],
+      "id": "format-html"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "owner": "={{$env.GITHUB_OWNER}}",
+        "repository": "={{$env.GITHUB_REPO}}",
+        "filePath": "=articles/{{ $json.slug }}.html",
+        "fileContent": "={{ $json.articlePageHTML }}",
+        "commitMessage": "=Add article: {{ $json.title }}"
+      },
+      "name": "Push Article to GitHub (articles/)",
+      "type": "n8n-nodes-base.github",
+      "position": [1650, 200],
+      "id": "push-article"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "owner": "={{$env.GITHUB_OWNER}}",
+        "repository": "={{$env.GITHUB_REPO}}",
+        "operation": "get",
+        "filePath": "index.html"
+      },
+      "name": "Get Current index.html",
+      "type": "n8n-nodes-base.github",
+      "position": [1650, 400],
+      "id": "get-index"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get current index.html content\nconst currentHTML = $input.first().json.content;\n\n// Get all article cards from previous nodes\nconst articles = $input.all().slice(1); // Skip the index.html content\n\n// Decode base64 content\nconst decodedHTML = Buffer.from(currentHTML, 'base64').toString('utf-8');\n\n// Extract existing articles grid\nconst gridMatch = decodedHTML.match(/<div class=\"articles-grid\" id=\"articlesGrid\">([\\s\\S]*?)<\\/div>\\s*<button class=\"load-more-btn\"/m);\n\nif (!gridMatch) {\n  return { error: 'Could not find articles grid in index.html' };\n}\n\nconst existingGrid = gridMatch[1];\n\n// Parse existing articles to get their dates\nconst existingArticles = [];\nconst articleRegex = /<article class=\"article-card\" data-date=\"([^\"]+)\">([\\s\\S]*?)<\\/article>/g;\nlet match;\n\nwhile ((match = articleRegex.exec(existingGrid)) !== null) {\n  existingArticles.push({\n    date: new Date(match[1]),\n    html: match[0]\n  });\n}\n\n// Add new articles\narticles.forEach(item => {\n  if (item.json.articleCard) {\n    existingArticles.push({\n      date: new Date(),\n      html: item.json.articleCard\n    });\n  }\n});\n\n// Sort by date (newest first) and take latest 6\nexistingArticles.sort((a, b) => b.date - a.date);\nconst latestArticles = existingArticles.slice(0, 6);\n\n// Build new grid HTML\nconst newGridHTML = latestArticles.map(a => a.html).join('\\n\\n                ');\n\n// Replace in index.html\nconst updatedHTML = decodedHTML.replace(\n  /<div class=\"articles-grid\" id=\"articlesGrid\">([\\s\\S]*?)<\\/div>\\s*(<button class=\"load-more-btn\")/m,\n  `<div class=\"articles-grid\" id=\"articlesGrid\">\\n                ${newGridHTML}\\n            </div>\\n\\n            $2`\n);\n\nreturn {\n  updatedHTML,\n  articleCount: latestArticles.length\n};"
+      },
+      "name": "Update index.html with New Articles",
+      "type": "n8n-nodes-base.code",
+      "position": [1850, 400],
+      "id": "update-index"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "owner": "={{$env.GITHUB_OWNER}}",
+        "repository": "={{$env.GITHUB_REPO}}",
+        "operation": "update",
+        "filePath": "index.html",
+        "fileContent": "={{ $json.updatedHTML }}",
+        "commitMessage": "=Update homepage with {{ $json.articleCount }} latest articles"
+      },
+      "name": "Push Updated index.html",
+      "type": "n8n-nodes-base.github",
+      "position": [2050, 400],
+      "id": "push-index"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.telegram.org/bot{{ $env.TELEGRAM_BOT_TOKEN }}/sendMessage",
+        "method": "POST",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"chat_id\": \"{{ $env.TELEGRAM_CHAT_ID }}\",\n  \"text\": \"✅ New article published!\\n\\n📊 *{{ $('Format Article HTML').item.json.symbol }}*\\n📰 {{ $('Format Article HTML').item.json.title }}\\n\\n🔗 [Read Article](https://drmsi.com/articles/{{ $('Format Article HTML').item.json.slug }}.html)\",\n  \"parse_mode\": \"Markdown\"\n}"
+      },
+      "name": "Notify Telegram (Optional)",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [2050, 200],
+      "id": "notify-telegram"
+    }
+  ],
+  "connections": {
+    "Schedule Every 4 Hours": {
+      "main": [[{ "node": "Select 4 Random Symbols", "type": "main", "index": 0 }]]
+    },
+    "Select 4 Random Symbols": {
+      "main": [[{ "node": "Smart Symbol Selection", "type": "main", "index": 0 }]]
+    },
+    "Smart Symbol Selection": {
+      "main": [[{ "node": "Fetch Price Data (Yahoo Finance)", "type": "main", "index": 0 }]]
+    },
+    "Fetch Price Data (Yahoo Finance)": {
+      "main": [[{ "node": "Process Market Data", "type": "main", "index": 0 }]]
+    },
+    "Process Market Data": {
+      "main": [[{ "node": "Generate Article with AI (OpenAI/Gemini)", "type": "main", "index": 0 }]]
+    },
+    "Generate Article with AI (OpenAI/Gemini)": {
+      "main": [[{ "node": "Format Article HTML", "type": "main", "index": 0 }]]
+    },
+    "Format Article HTML": {
+      "main": [[
+        { "node": "Push Article to GitHub (articles/)", "type": "main", "index": 0 },
+        { "node": "Get Current index.html", "type": "main", "index": 0 }
+      ]]
+    },
+    "Push Article to GitHub (articles/)": {
+      "main": [[{ "node": "Notify Telegram (Optional)", "type": "main", "index": 0 }]]
+    },
+    "Get Current index.html": {
+      "main": [[{ "node": "Update index.html with New Articles", "type": "main", "index": 0 }]]
+    },
+    "Update index.html with New Articles": {
+      "main": [[{ "node": "Push Updated index.html", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}
