@@ -1,0 +1,709 @@
+
+
+<html>
+<head>
+    <meta charset="utf-8" name="viewport" content="width=device-width,height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no" />
+</head>
+
+<head>
+    <meta name='apple-mobile-web-app-capable' content='yes' />
+    <meta name='apple-mobile-web-app-status-bar-style' content='black-translucent'/>
+</head>
+
+<head>
+
+    <style>
+
+
+        .card {
+          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+          transition: 0.3s;
+          width: 90%;
+          border-radius: 5px;
+          margin: 25px;
+        }
+
+        .card:hover {
+          box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+        img {
+          border-radius: 5px 5px 0 0;
+        }
+
+        .container {
+          padding: 2px 16px;
+          text-align: left;
+        }
+
+        .header {
+          padding: 60px;
+          text-align: center;
+          background: #237;
+          color: white;
+          font-size: 30px;
+        }
+
+
+        .collapsible {
+          background-color: #237;
+          color: white;
+          cursor: pointer;
+          padding: 18px;
+          width: 100%;
+          border: none;
+          text-align: left;
+          outline: none;
+          font-size: 15px;
+        }
+
+        .active, .collapsible:hover {
+          background-color: #555;
+        }
+
+        .content {
+          padding: 0 18px;
+          display: none;
+          overflow: hidden;
+          background-color: #f1f1f1;
+        }
+
+
+              form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        label, input, textarea {
+            display: block;
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 150px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+
+
+
+<body>
+<center>
+    <div style='padding:25px;width:90%'>
+        <div class='header'><h1>DrMSI Apps</h1>
+            <h2 id="dynamicTitle"></h2>
+        </div>
+
+        <div class="card">
+            <div class="container">
+                <p>Last Updated March 11, 2025</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="container">
+                <button type="button" class="collapsible"><h2><b>About Us</b></h2></button>
+                <div class="content">
+                    <p>DrMSI Apps are a group of apps including:</p>
+                    <p>All Apps in Google Play developed by <a href='https://play.google.com/store/apps/dev?id=7509485406304298835'>DrMSI</a></p>
+                    <p>All Apps in App Store developed by <a href='https://apps.apple.com/tt/developer/mohammad-ibreighith/id911144500'>M.I</a></p>
+                    <p>Does't include apps from other sites</p>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="container">
+
+                <button type="button" class="collapsible"><h2><b>Terms and Conditions</b></h2></button>
+
+                <div class="content">
+
+                    <p>In order to provide our Services (as defined below) through our apps, services, features, software, or website, we need to obtain your express agreement to our Terms of Service ("Terms"). You agree to our Terms by registering, installing, accessing, or using our apps, services, features, software, or website.  </p>
+                    <h3>Our Services</h3>
+                    <ul>
+                        <li><p><strong>Safety And Security.</strong> We work to protect the safety and security of DrMSI Apps by appropriately dealing with abusive people and activity and violations of our Terms. We prohibit misuse of our Services, harmful conduct towards others, and violations of our Terms and policies, and address situations where we may be able to help support or protect our community. We develop automated systems to improve our ability to detect and remove abusive people and activity that may harm our community and the safety and security of our Services. If we learn of people or activity like this, we will take appropriate action by removing such people or activity or contacting law enforcement. We share information with other affiliated companies when we learn of misuse or harmful conduct by someone using our Services.</p></li>
+                        <li><p><strong>Enabling Global Access To Our Services.</strong> To operate our global Service, we need to store and distribute content and information in data centers and systems around the world, including outside your country of residence. This infrastructure may be owned or operated by other service providers or affiliated companies (Google, Facebook).</p></li>
+                    </ul>
+                    <h3>About Our Services</h3>
+                    <p><strong>Registration.</strong><p>You may be required to register with the Application, you are responsible for maintaining the security of your account and you are fully responsible for all activities that occur under the account and any other actions taken in connection with it. We may, but have no obligation to, monitor and review new accounts before you may sign in and use our Services. Providing false contact information of any kind may result in the termination of your account. You must immediately notify us of any unauthorized uses of your account or any other breaches of security. We will not be liable for any acts or omissions by you, including any damages of any kind incurred as a result of such acts or omissions. We may suspend, disable, or delete your account (or any part thereof) if we determine that you have violated any provision of this Agreement or that your conduct or content would tend to damage our reputation and goodwill. If we delete your account for the foregoing reasons, you may not re-register for our Services. We may block your email address and Internet protocol address to prevent further registration.</p>
+                    <p><strong>Age.</strong> If you live in a country in the <a href="#">European Region</a>, you must be at least 16 years old to use our Services or such greater age required in your country to register for or use our Services. If you live in any other country except those in the <a href="#">European Region</a>, you must be at least 13 years old to use our Services or such greater age required in your country to register for or use our Services. In addition to being of the minimum required age to use our Services under applicable law, if you are not old enough to have authority to agree to our Terms in your country, your parent or guardian must agree to our Terms on your behalf.</p>
+                    <p><strong>Devices And Software.</strong> You must provide certain devices, software, and data connections to use our Services, which we otherwise do not supply. In order to use our Services, you consent to manually or automatically download and install updates to our Services. You also consent to our sending you notifications via DrMSI Apps from time to time, as necessary to provide our Services to you.</p>
+                    <p><strong>Fees And Taxes.</strong> You are responsible for all carrier data plans, Internet fees, and other fees and taxes associated with your use of our Services. </p>
+                    <h3>Privacy Policy And User Data</h3>
+                    <p>DrMSI Apps cares about your privacy. DrMSI Apps's <a href="#" rel="noopener">Privacy Policy</a> describes our information (including message) practices, including the types of information we receive and collect from you, how we use and share this information, and your rights in relation to the processing of information about you. The <a href="#" rel="noopener">Privacy Policy</a> sets out the legal bases for our processing of personal information about you, including the collection, use, processing, and sharing of such information, as well as the transfer and processing of such information to the United States and other countries globally where we have or use facilities, service providers, affiliated companies, or partners, regardless of where you use our Services. </p>
+
+                    <h3>User content</h3>
+                    <p>We do not own any data, information or material ("Content") that you submit in the Mobile Application in the course of using the Service. You shall have sole responsibility for the accuracy, quality, integrity, legality, reliability, appropriateness, and intellectual property ownership or right to use of all submitted Content. We may, but have no obligation to, monitor and review Content in the Mobile Application submitted or created using our Services by you. Unless specifically permitted by you, your use of the Mobile Application does not grant us the license to use, reproduce, adapt, modify, publish or distribute the Content created by you or stored in your user account for commercial, marketing or any similar purpose. But you grant us permission to access, copy, distribute, store, transmit, reformat, display and perform the Content of your user account solely as required for the purpose of providing the Services to you. Without limiting any of those representations or warranties, we have the right, though not the obligation, to, in our own sole discretion, refuse or remove any Content that, in our reasonable opinion, violates any of our policies or is in any way harmful or objectionable.</p>
+
+                    <h3>Backups</h3>
+                    <p>We are not responsible for Content residing in the Mobile Application. In no event shall we be held liable for any loss of any Content. It is your sole responsibility to maintain appropriate backup of your Content. Notwithstanding the foregoing, on some occasions and in certain circumstances, with absolutely no obligation, we may be able to restore some or all of your data that has been deleted as of a certain date and time when we may have backed up data for our own purposes. We make no guarantee that the data you need will be available.</p>
+
+                    <h3>USER REPRESENTATIONS</h3>
+                    <p>By using the Application, you represent and warrant that: (1) all registration information you submit will be true, accurate, current, and complete; (2) you will maintain the accuracy of such information and promptly update such registration information as necessary; (3) you have the legal capacity and you agree to comply with these Terms of Use; (4) you are not under the age of 13; (5) not a minor in the jurisdiction in which you reside, or if a minor, you have received parental permission to use the Site; (6) you will not access the Application through automated or non-human means, whether through a bot, script or otherwise; (7) you will not use the Application for any illegal or unauthorized purpose; and (8) your use of the Application will not violate any applicable law or regulation.</p>
+                    <p>
+                        If you provide any information that is untrue, inaccurate, not current, or incomplete, we have the right to suspend or terminate your account and refuse any and all current or future use of the Application(or any portion thereof).
+
+                        USER REGISTRATION
+                    </p>
+
+
+                    <h3>Acceptable Use Of Our Services</h3>
+                    <p><strong>Our Terms And Policies.</strong> You must use our Services according to our Terms and policies. If you violate our Terms or policies, we may take action with respect to your account, including disabling or suspending your account and, if we do, you must not create another account without our permission.</p>
+                    <p><strong>Legal And Acceptable Use.</strong> You must access and use our Services only for legal, authorized, and acceptable purposes. You will not use (or assist others in using) our Services in ways that: (a) violate, misappropriate, or infringe the rights of DrMSI Apps, our users, or others, including privacy, publicity, intellectual property, or other proprietary rights; (b) are illegal, obscene, defamatory, threatening, intimidating, harassing, hateful, racially or ethnically offensive, or instigate or encourage conduct that would be illegal or otherwise inappropriate, including promoting violent crimes; (c) involve publishing falsehoods, misrepresentations, or misleading statements; (d) impersonate someone; (e) involve sending illegal or impermissible communications, such as bulk messaging, auto-messaging, auto-dialing, and the like; or (f) involve any non-personal use of our Services unless otherwise authorized by us. </p>
+                    <p><strong>Harm To DrMSI Apps Or Our Users.</strong> You must not (or assist others to) directly, indirectly, through automated or other means access, use, copy, adapt, modify, prepare derivative works based upon, distribute, license, sublicense, transfer, display, perform, or otherwise exploit our Services in impermissible or unauthorized manners, or in ways that burden, impair, or harm us, our Services, systems, our users, or others, including that you must not directly or through automated means: (a) reverse engineer, alter, modify, create derivative works from, decompile, or extract code from our Services; (b) send, store, or transmit viruses or other harmful computer code through or onto our Services; (c) gain or attempt to gain unauthorized access to our Services or systems; (d) interfere with or disrupt the safety, security, or performance of our Services; (e) create accounts for our Services through unauthorized or automated means; (f) collect the information of or about our users in any impermissible or unauthorized manner; (g) sell, resell, rent, or charge for our Services in an unauthorized manner; (h) distribute or make our Services available over a network where they could be used by multiple devices at the same time, except as authorized through tools we have expressly provided via our Services; or (i) create software or APIs that function substantially the same as our Services and offer them for use by third parties in an unauthorized manner.</p>
+                    <p><strong>Keeping Your Account Secure.</strong> You are responsible for keeping your device and your DrMSI Apps account safe and secure, and you must notify us promptly of any unauthorized use or security breach of your account or our Services. </p>
+                    <h3>Third-Party Services</h3>
+                    <p>Our Services may allow you to access, use, or interact with third-party websites, apps, content, other products and services, Google Company Products, Apple Company Products,and Facebook Company Products. For example, you may choose to use third-party sign-in services (such as Apple, Facebook or Google sign-in) that are integrated with our Services or interact with a share button on a third-party's website that enables you to send information to your DrMSI Apps contacts. Please note that these Terms and the Privacy Policy apply only to the use of our Services. When you use third-party services or Facebook Company Products, Apple Company, or Google Company Products, their own terms and privacy policies will govern your use of those services.</p>
+                    <h3>Licenses</h3>
+
+                    <p><strong>Use License.</strong> If you access the Application via a mobile application, then we grant you a revocable, non-exclusive, non-transferable, limited right to install and use the mobile application on wireless electronic devices owned or controlled by you, and to access and use the mobile application on such devices strictly in accordance with the terms and conditions of this mobile application license contained in these Terms of Use. You shall not: (1) decompile, reverse engineer, disassemble, attempt to derive the source code of, or decrypt the application; (2) make any modification, adaptation, improvement, enhancement, translation, or derivative work from the application; (3) violate any applicable laws, rules, or regulations in connection with your access or use of the application; (4) remove, alter, or obscure any proprietary notice (including any notice of copyright or trademark) posted by us or the licensors of the application; (5) use the application for any revenue generating endeavor, commercial enterprise, or other purpose for which it is not designed or intended; (6) make the application available over a network or other environment permitting access or use by multiple devices or users at the same time; (7) use the application for creating a product, service, or software that is, directly or indirectly, competitive with or in any way a substitute for the application; (8) use the application to send automated queries to any website or to send any unsolicited commercial e-mail; or (9) use any proprietary information or any of our interfaces or our other intellectual property in the design, development, manufacture, licensing, or distribution of any applications, accessories, or devices for use with the application.</p>
+
+
+                    <p><strong>Your Rights.</strong> DrMSI Apps does not claim ownership of the information that you submit for your DrMSI Apps account or through our Services. You must have the necessary rights to such information that you submit for your DrMSI Apps account or through our Services and the right to grant the rights and licenses in our Terms.</p>
+                    <p><strong>DrMSI Apps's Rights.</strong> We own all copyrights, trademarks, domains, logos, trade dress, trade secrets, patents, and other intellectual property rights associated with our Services. You may not use our copyrights, trademarks, domains, logos, trade dress, patents, or other intellectual property rights.</p>
+                    <p><strong>Your License To DrMSI Apps.</strong> In order to operate and provide our Services, you grant DrMSI Apps a worldwide, non-exclusive, royalty-free, sublicensable, and transferable license to use, reproduce, distribute, create derivative works of, display, and perform the information (including the content) that you upload, submit, store, send, or receive on or through our Services. The rights you grant in this license are for the limited purpose of operating and providing our Services (such as to allow us to display your profile picture and status message, transmit your messages, store your undelivered messages on our servers for up to 30 days as we try to deliver them, and otherwise as described in our <a href="#" rel="noopener">Privacy Policy</a>).</p>
+                    <p><strong>DrMSI Apps's License To You.</strong> We grant you a limited, revocable, non-exclusive, non-sublicensable, and non-transferable license to use our Services, subject to and in accordance with our Terms. This license is for the sole purpose of enabling you to use our Services in the manner permitted by our Terms. No licenses or rights are granted to you by implication or otherwise, except for the licenses and rights expressly granted to you.</p>
+                    <p><strong>Reporting Third-Party Copyright, Trademark, And Other Intellectual Property Infringement.</strong> To report claims of third-party copyright, trademark, or other intellectual property infringement, please Contact Us. We may take action with respect to your account, including disabling or suspending your account, if you infringe the intellectual property rights of others.</p>
+
+                    <p><strong>Apple and Android Devices.</strong> The following terms apply when you use a mobile application obtained from either the Apple Store or Google Play (each an “App Distributor”) to access the Application: (1) the license granted to you for our mobile application is limited to a non-transferable license to use the application on a device that utilizes the Apple iOS or Android operating systems, as applicable, and in accordance with the usage rules set forth in the applicable App Distributor’s terms of service; (2) we are responsible for providing any maintenance and support services with respect to the mobile application as specified in the terms and conditions of this mobile application license contained in these Terms of Use or as otherwise required under applicable law, and you acknowledge that each App Distributor has no obligation whatsoever to furnish any maintenance and support services with respect to the mobile application; (3) in the event of any failure of the mobile application to conform to any applicable warranty, you may notify the applicable App Distributor, and the App Distributor, in accordance with its terms and policies, may refund the purchase price, if any, paid for the mobile application, and to the maximum extent permitted by applicable law, the App Distributor will have no other warranty obligation whatsoever with respect to the mobile application; (4) you represent and warrant that (i) you are not located in a country that is subject to a U.S. government embargo, or that has been designated by the U.S. government as a “terrorist supporting” country and (ii) you are not listed on any U.S. government list of prohibited or restricted parties; (5) you must comply with applicable third-party terms of agreement when using the mobile application, e.g., if you have a VoIP application, then you must not be in violation of their wireless data service agreement when using the mobile application; and (6) you acknowledge and agree that the App Distributors are third-party beneficiaries of the terms and conditions in this mobile application license contained in these Terms of Use, and that each App Distributor will have the right (and will be deemed to have accepted the right) to enforce the terms and conditions in this mobile application license contained in these Terms of Use against you as a third-party beneficiary thereof.</p>
+
+
+                    <h3>CONTRIBUTION LICENSE</h3>
+
+                    <p>By posting your Contributions to any part of the Application, or making Contributions accessible to the Application by linking your account from the Application to any of your social networking accounts, you automatically grant, and you represent and warrant that you have the right to grant, to us an unrestricted, unlimited, irrevocable, perpetual, non-exclusive, transferable, royalty-free, fully-paid, worldwide right, and license to host, use, copy, reproduce, disclose, sell, resell, publish, broadcast, retitle, archive, store, cache, publicly perform, publicly display, reformat, translate, transmit, excerpt (in whole or in part), and distribute such Contributions (including, without limitation, your image and voice) for any purpose, commercial, advertising, or otherwise, and to prepare derivative works of, or incorporate into other works, such Contributions, and grant and authorize sublicenses of the foregoing. The use and distribution may occur in any media formats and through any media channels.</p>
+
+                    <p>This license will apply to any form, media, or technology now known or hereafter developed, and includes our use of your name, company name, and franchise name, as applicable, and any of the trademarks, service marks, trade names, logos, and personal and commercial images you provide. You waive all moral rights in your Contributions, and you warrant that moral rights have not otherwise been asserted in your Contributions.</p>
+
+                    <p>We do not assert any ownership over your Contributions. You retain full ownership of all of your Contributions and any intellectual property rights or other proprietary rights associated with your Contributions. We are not liable for any statements or representations in your Contributions provided by you in any area on the Application. You are solely responsible for your Contributions to the Application and you expressly agree to exonerate us from any and all responsibility and to refrain from any legal action against us regarding your Contributions.</p>
+
+                    <p>We have the right, in our sole and absolute discretion, (1) to edit, redact, or otherwise change any Contributions; (2) to re-categorize any Contributions to place them in more appropriate locations on the Application; and (3) to pre-screen or delete any Contributions at any time and for any reason, without notice. We have no obligation to monitor your Contributions.</p>
+
+                    <h3>PROHIBITED ACTIVITIES</h3>
+                    <p>You may not access or use the Application for any purpose other than that for which we make the Application available. The Application may not be used in connection with any commercial endeavors except those that are specifically endorsed or approved by us.</p>
+                    <p>As a user of the Application, you agree not to:</p>
+
+                    <ol>
+                        <li>Systematically retrieve data or other content from the Application to create or compile, directly or indirectly, a collection, compilation, database, or directory without written permission from us.</li>
+                        <li>Make any unauthorized use of the Application, including collecting usernames and/or email addresses of users by electronic or other means for the purpose of sending unsolicited email, or creating user accounts by automated means or under false pretenses.</li>
+                        <li>Use a buying agent or purchasing agent to make purchases on the Application.</li>
+                        <li>Use the Application to advertise or offer to sell goods and services.</li>
+                        <li>Circumvent, disable, or otherwise interfere with security-related features of the Application, including features that prevent or restrict the use or copying of any Content or enforce limitations on the use of the Application and/or the Content contained therein.</li>
+                        <li>Engage in unauthorized framing of or linking to the Application.</li>
+                        <li>Trick, defraud, or mislead us and other users, especially in any attempt to learn sensitive account information such as user passwords;</li>
+                        <li>Make improper use of our support services or submit false reports of abuse or misconduct.</li>
+                        <li>Engage in any automated use of the system, such as using scripts to send comments or messages, or using any data mining, robots, or similar data gathering and extraction tools.</li>
+                        <li>Interfere with, disrupt, or create an undue burden on the Application or the networks or services connected to the Application.</li>
+                        <li>Attempt to impersonate another user or person or use the username of another user.</li>
+                        <li>Sell or otherwise transfer your profile.</li>
+                        <li>Use any information obtained from the Application in order to harass, abuse, or harm another person.</li>
+                        <li>Use the Application as part of any effort to compete with us or otherwise use the Application and/or the Content for any revenue-generating endeavor or commercial enterprise.</li>
+                        <li>Decipher, decompile, disassemble, or reverse engineer any of the software comprising or in any way making up a part of the Application.</li>
+                        <li>Attempt to bypass any measures of the Application designed to prevent or restrict access to the Application, or any portion of the Application.</li>
+                        <li>Harass, annoy, intimidate, or threaten any of our employees or agents engaged in providing any portion of the Application to you.</li>
+                        <li>Delete the copyright or other proprietary rights notice from any Content.</li>
+                        <li>Copy or adapt theApplication’s software, including but not limited to Flash, PHP, HTML, JavaScript, or other code.</li>
+                        <li>Upload or transmit (or attempt to upload or to transmit) viruses, Trojan horses, or other material, including excessive use of capital letters and spamming (continuous posting of repetitive text), that interferes with any party’s uninterrupted use and enjoyment of the Application or modifies, impairs, disrupts, alters, or interferes with the use, features, functions, operation, or maintenance of the Application.</li>
+                        <li>Upload or transmit (or attempt to upload or to transmit) any material that acts as a passive or active information collection or transmission mechanism, including without limitation, clear graphics interchange formats (“gifs”), 1×1 pixels, web bugs, cookies, or other similar devices (sometimes referred to as “spyware” or “passive collection mechanisms” or “pcms”).</li>
+                        <li>Except as may be the result of standard search engine or Internet browser usage, use, launch, develop, or distribute any automated system, including without limitation, any spider, robot, cheat utility, scraper, or offline reader that accesses the Application, or using or launching any unauthorized script or other software.</li>
+                        <li>Disparage, tarnish, or otherwise harm, in our opinion, us and/or the Application.</li>
+                        <li>Use the Application in a manner inconsistent with any applicable laws or regulations.</li>
+                        <li><span style="color: #8351f9;">[other]</span></li>
+                    </ol>
+
+
+                    <h3>USER GENERATED CONTRIBUTIONS</h3>
+                    <p>The Application may invite you to chat, contribute to, or participate in blogs, message boards, online forums, and other functionality, and may provide you with the opportunity to create, submit, post, display, transmit, perform, publish, distribute, or broadcast content and materials to us or on the Application, including but not limited to text, writings, video, audio, photographs, graphics, comments, suggestions, or personal information or other material (collectively, “Contributions”). Contributions may be viewable by other users of the Application and through third-party websites. As such, any Contributions you transmit may be treated as non-confidential and non-proprietary. When you create or make available any Contributions, you thereby represent and warrant that:</p>
+
+                    <ol>
+                        <li>The creation, distribution, transmission, public display, or performance, and the accessing, downloading, or copying of your Contributions do not and will not infringe the proprietary rights, including but not limited to the copyright, patent, trademark, trade secret, or moral rights of any third party.</li>
+                        <li>You are the creator and owner of or have the necessary licenses, rights, consents, releases, and permissions to use and to authorize us, the Application, and other users of the Application to use your Contributions in any manner contemplated by the Application and these Terms of Use.</li>
+                        <li>You have the written consent, release, and/or permission of each and every identifiable individual person in your Contributions to use the name or likeness of each and every such identifiable individual person to enable inclusion and use of your Contributions in any manner contemplated by the Application and these Terms of Use.</li>
+                        <li>Your Contributions are not false, inaccurate, or misleading.</li>
+                        <li>Your Contributions are not unsolicited or unauthorized advertising, promotional materials, pyramid schemes, chain letters, spam, mass mailings, or other forms of solicitation.</li>
+                        <li>Your Contributions are not obscene, lewd, lascivious, filthy, violent, harassing, libelous, slanderous, or otherwise objectionable (as determined by us).</li>
+                        <li>Your Contributions do not ridicule, mock, disparage, intimidate, or abuse anyone.</li>
+                        <li>Your Contributions do not advocate the violent overthrow of any government or incite, encourage, or threaten physical harm against another.</li>
+                        <li>Your Contributions do not violate any applicable law, regulation, or rule.</li>
+                        <li>Your Contributions do not violate the privacy or publicity rights of any third party.</li>
+                        <li>Your Contributions do not contain any material that solicits personal information from anyone under the age of 18 or exploits people under the age of 18 in a sexual or violent manner.</li>
+                        <li>Your Contributions do not violate any federal or state law concerning child pornography, or otherwise intended to protect the health or well-being of minors;</li>
+                        <li>Your Contributions do not include any offensive comments that are connected to race, national origin, gender, sexual preference, or physical handicap.</li>
+                        <li>Your Contributions do not otherwise violate, or link to material that violates, any provision of these Terms of Use, or any applicable law or regulation.</li>
+                    </ol>
+
+                    <p>Any use of the Application in violation of the foregoing violates these Terms of Use and may result in, among other things, termination or suspension of your rights to use the Application.</p>
+
+
+                    <h3>GUIDELINES FOR REVIEWS</h3>
+
+                    <p>We may provide you areas on the Application to leave reviews or ratings. When posting a review, you must comply with the following criteria: (1) you should have firsthand experience with the person/entity being reviewed; (2) your reviews should not contain offensive profanity, or abusive, racist, offensive, or hate language; (3) your reviews should not contain discriminatory references based on religion, race, gender, national origin, age, marital status, sexual orientation, or disability; (4) your reviews should not contain references to illegal activity; (5) you should not be affiliated with competitors if posting negative reviews; (6) you should not make any conclusions as to the legality of conduct; (7) you may not post any false or misleading statements; and (8) you may not organize a campaign encouraging others to post reviews, whether positive or negative.</p>
+
+                    <p>We may accept, reject, or remove reviews in our sole discretion. We have absolutely no obligation to screen reviews or to delete reviews, even if anyone considers reviews objectionable or inaccurate. Reviews are not endorsed by us, and do not necessarily represent our opinions or the views of any of our affiliates or partners. We do not assume liability for any review or for any claims, liabilities, or losses resulting from any review. By posting a review, you hereby grant to us a perpetual, non-exclusive, worldwide, royalty-free, fully-paid, assignable, and sublicensable right and license to reproduce, modify, translate, transmit by any means, display, perform, and/or distribute all content relating to reviews.<strong>&nbsp;</strong></p>
+
+
+                    <h3>Disclaimers</h3>
+                    <p>WE WILL USE REASONABLE SKILL AND CARE IN PROVIDING OUR SERVICES TO YOU AND IN KEEPING IT A SAFE, SECURE, AND ERROR-FREE ENVIRONMENT, BUT WE DO NOT GUARANTEE THAT DrMSI Apps WILL ALWAYS FUNCTION WITHOUT DISRUPTIONS, DELAYS, OR IMPERFECTIONS. YOU USE OUR SERVICES AT YOUR OWN RISK AND SUBJECT TO THE FOLLOWING DISCLAIMERS. WE ARE PROVIDING OUR SERVICES ON AN "AS IS" BASIS WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, NON-INFRINGEMENT, AND FREEDOM FROM COMPUTER VIRUS OR OTHER HARMFUL CODE. WE DO NOT WARRANT THAT ANY INFORMATION PROVIDED BY US IS ACCURATE, COMPLETE, OR USEFUL, THAT OUR SERVICES WILL BE OPERATIONAL, ERROR FREE, SECURE, OR SAFE, OR THAT OUR SERVICES WILL FUNCTION WITHOUT DISRUPTIONS, DELAYS, OR IMPERFECTIONS. WE DO NOT CONTROL AND ARE NOT RESPONSIBLE FOR, CONTROLLING HOW OR WHEN OUR USERS USE OUR SERVICES OR THE FEATURES, SERVICES, AND INTERFACES OUR SERVICES PROVIDE. WE ARE NOT RESPONSIBLE FOR AND ARE NOT OBLIGATED TO CONTROL THE ACTIONS OR INFORMATION (INCLUDING CONTENT) OF OUR USERS OR OTHER THIRD PARTIES. YOU RELEASE US, OUR SUBSIDIARIES, AFFILIATES, AND OUR AND THEIR DIRECTORS, OFFICERS, EMPLOYEES, PARTNERS, AND AGENTS (TOGETHER, THE "DrMSI Apps PARTIES") FROM ANY CLAIM, COMPLAINT, CAUSE OF ACTION, OR CONTROVERSY (TOGETHER, "CLAIM") AND DAMAGES, KNOWN AND UNKNOWN, RELATING TO, ARISING OUT OF, OR IN ANY WAY CONNECTED WITH ANY SUCH CLAIM YOU HAVE AGAINST ANY THIRD PARTIES. YOUR RIGHTS WITH RESPECT TO DrMSI Apps ARE NOT MODIFIED BY THE FOREGOING DISCLAIMER IF THE LAWS OF YOUR COUNTRY OF RESIDENCE, APPLICABLE AS A RESULT OF YOUR USE OF OUR SERVICES, DO NOT PERMIT IT. IF YOU ARE A UNITED STATES RESIDENT, YOU WAIVE CALIFORNIA CIVIL CODE §1542, WHICH SAYS: A GENERAL RELEASE DOES NOT EXTEND TO CLAIMS WHICH THE CREDITOR DOES NOT KNOW OR SUSPECT TO EXIST IN HIS OR HER FAVOR AT THE TIME OF EXECUTING THE RELEASE, WHICH IF KNOWN BY HIM OR HER MUST HAVE MATERIALLY AFFECTED HIS OR HER SETTLEMENT WITH THE DEBTOR.</p>
+
+                    <h3>SOCIAL MEDIA</h3>
+                    <p>As part of the functionality of the Application, you may link your account with online accounts you have with third-party service providers (each such account, a “Third-Party Account”) by either: (1) providing your Third-Party Account login information through the Application; or (2) allowing us to access your Third-Party Account, as is permitted under the applicable terms and conditions that govern your use of each Third-Party Account. You represent and warrant that you are entitled to disclose your Third-Party Account login information to us and/or grant us access to your Third-Party Account, without breach by you of any of the terms and conditions that govern your use of the applicable Third-Party Account, and without obligating us to pay any fees or making us subject to any usage limitations imposed by the third-party service provider of the Third-Party Account. By granting us access to any Third-Party Accounts, you understand that (1) we may access, make available, and store (if applicable) any content that you have provided to and stored in your Third-Party Account (the “Social Network Content”) so that it is available on and through the Application via your account, including without limitation any friend lists and (2) we may submit to and receive from your Third-Party Account additional information to the extent you are notified when you link your account with the Third-Party Account. Depending on the Third-Party Accounts you choose and subject to the privacy settings that you have set in such Third-Party Accounts, personally identifiable information that you post to your Third-Party Accounts may be available on and through your account on the Application. Please note that if a Third-Party Account or associated service becomes unavailable or our access to such Third-Party Account is terminated by the third-party service provider, then Social Network Content may no longer be available on and through the Application. You will have the ability to disable the connection between your account on the Application and your Third-Party Accounts at any time. PLEASE NOTE THAT YOUR RELATIONSHIP WITH THE THIRD-PARTY SERVICE PROVIDERS ASSOCIATED WITH YOUR THIRD-PARTY ACCOUNTS IS GOVERNED SOLELY BY YOUR AGREEMENT(S) WITH SUCH THIRD-PARTY SERVICE PROVIDERS. We make no effort to review any Social Network Content for any purpose, including but not limited to, for accuracy, legality, or non-infringement, and we are not responsible for any Social Network Content. You acknowledge and agree that we may access your email address book associated with a Third-Party Account and your contacts list stored on your mobile device or tablet computer solely for purposes of identifying and informing you of those contacts who have also registered to use the Application. You can deactivate the connection between the Application and your Third-Party Account by contacting us using the contact information below or through your account settings (if applicable). We will attempt to delete any information stored on our servers that was obtained through such Third-Party Account, except the username and profile picture that become associated with your account.</p>
+
+                    <h3>SUBMISSIONS</h3>
+                    <p>You acknowledge and agree that any questions, comments, suggestions, ideas, feedback, or other information regarding the Application (“Submissions”) provided by you to us are non-confidential and shall become our sole property. We shall own exclusive rights, including all intellectual property rights, and shall be entitled to the unrestricted use and dissemination of these Submissions for any lawful purpose, commercial or otherwise, without acknowledgment or compensation to you. You hereby waive all moral rights to any such Submissions, and you hereby warrant that any such Submissions are original with you or that you have the right to submit such Submissions. You agree there shall be no recourse against us for any alleged or actual infringement or misappropriation of any proprietary right in your Submissions.</p>
+
+                    <h3>THIRD-PARTY WEBSITES AND CONTENT</h3>
+                    <p>The Application may contain (or you may be sent via the Application) links to other websites (“Third-Party Websites”) as well as articles, photographs, text, graphics, pictures, designs, music, sound, video, information, applications, software, and other content or items belonging to or originating from third parties (“Third-Party Content”). Such Third-Party Websites and Third-Party Content are not investigated, monitored, or checked for accuracy, appropriateness, or completeness by us, and we are not responsible for any Third-Party Websites accessed through the Application or any Third-Party Content posted on, available through, or installed from the Application, including the content, accuracy, offensiveness, opinions, reliability, privacy practices, or other policies of or contained in the Third-Party Websites or the Third-Party Content. Inclusion of, linking to, or permitting the use or installation of any Third-Party Websites or any Third-Party Content does not imply approval or endorsement thereof by us. If you decide to leave the Application and access the Third-Party Websites or to use or install any Third-Party Content, you do so at your own risk, and you should be aware these Terms of Use no longer govern. You should review the applicable terms and policies, including privacy and data gathering practices, of any website to which you navigate from the Application or relating to any applications you use or install from the Application. Any purchases you make through Third-Party Websites will be through other websites and from other companies, and we take no responsibility whatsoever in relation to such purchases which are exclusively between you and the applicable third party. You agree and acknowledge that we do not endorse the products or services offered on Third-Party Websites and you shall hold us harmless from any harm caused by your purchase of such products or services. Additionally, you shall hold us harmless from any losses sustained by you or harm caused to you relating to or resulting in any way from any Third-Party Content or any contact with Third-Party Websites.</p>
+
+                    <h3>ADVERTISERS</h3>
+                    <p>We allow advertisers to display their advertisements and other information in certain areas of the Application, such as sidebar advertisements or banner advertisements. If you are an advertiser, you shall take full responsibility for any advertisements you place on the Application and any services provided on the Application or products sold through those advertisements. Further, as an advertiser, you warrant and represent that you possess all rights and authority to place advertisements on the Application, including, but not limited to, intellectual property rights, publicity rights, and contractual rights. As an advertiser, you agree that such advertisements are subject to our Digital Millennium Copyright Act (“DMCA”) Notice and Policy provisions as described below, and you understand and agree there will be no refund or other compensation for DMCA takedown-related issues. We simply provide the space to place such advertisements, and we have no other relationship with advertisers.</p>
+
+                    <h3>APP MANAGEMENT</h3>
+                    <p>We reserve the right, but not the obligation, to: (1) monitor the Application for violations of these Terms of Use; (2) take appropriate legal action against anyone who, in our sole discretion, violates the law or these Terms of Use, including without limitation, reporting such user to law enforcement authorities; (3) in our sole discretion and without limitation, refuse, restrict access to, limit the availability of, or disable (to the extent technologically feasible) any of your Contributions or any portion thereof; (4) in our sole discretion and without limitation, notice, or liability, to remove from the Application or otherwise disable all files and content that are excessive in size or are in any way burdensome to our systems; and (5) otherwise manage the Application in a manner designed to protect our rights and property and to facilitate the proper functioning of the Application.</p>
+
+                    <h3>DIGITAL MILLENNIUM COPYRIGHT ACT (DMCA) NOTICE AND POLICY</h3>
+                    <p><strong>Notifications</strong> We respect the intellectual property rights of others. If you believe that any material available on or through the Application infringes upon any copyright you own or control, please immediately notify our Designated Copyright Agent using the contact information provided below (a “Notification”). A copy of your Notification will be sent to the person who posted or stored the material addressed in the Notification. Please be advised that pursuant to federal law you may be held liable for damages if you make material misrepresentations in a Notification. Thus, if you are not sure that material located on or linked to by the Application infringes your copyright, you should consider first contacting an attorney.</p>
+
+                    <p><strong>Counter Notification</strong> If you believe your own copyrighted material has been removed from the Application as a result of a mistake or misidentification, you may submit a written counter notification to [us/our Designated Copyright Agent] using the contact information provided below (a “Counter Notification”). To be an effective Counter Notification under the DMCA, your Counter Notification must include substantially the following: (1) identification of the material that has been removed or disabled and the location at which the material appeared before it was removed or disabled; (2) a statement that you consent to the jurisdiction of the Federal District Court in which your address is located, or if your address is outside the United States, for any judicial district in which we are located; (3) a statement that you will accept service of process from the party that filed the Notification or the party’s agent; (4) your name, address, and telephone number; (5) a statement under penalty of perjury that you have a good faith belief that the material in question was removed or disabled as a result of a mistake or misidentification of the material to be removed or disabled; and (6) your physical or electronic signature.</p>
+
+                    <p>If you send us a valid, written Counter Notification meeting the requirements described above, we will restore your removed or disabled material, unless we first receive notice from the party filing the Notification informing us that such party has filed a court action to restrain you from engaging in infringing activity related to the material in question. Please note that if you materially misrepresent that the disabled or removed content was removed by mistake or misidentification, you may be liable for damages, including costs and attorney’s fees. Filing a false Counter Notification constitutes perjury.</p>
+
+                    <p>Use this form to Contact Us:</p>
+                    <p>Designated Copyright Agent</p>
+                    <p><span style="color: #8351f9;">[Name]</span></p>
+                    <p>Attn: Copyright Agent</p>
+                    <p><span style="color: #8351f9;">[Address]</span></p>
+                    <p><span style="color: #8351f9;">[City, State Zip]</span></p>
+                    <p><span style="color: #8351f9;">[email]</span></p>
+
+
+                    <h3>COPYRIGHT INFRINGEMENTS</h3>
+                    <p>We respect the intellectual property rights of others. If you believe that any material available on or through the Application infringes upon any copyright you own or control, please immediately notify us using the contact information provided below (a “Notification”). A copy of your Notification will be sent to the person who posted or stored the material addressed in the Notification. Please be advised that pursuant to federal law you may be held liable for damages if you make material misrepresentations in a Notification. Thus, if you are not sure that material located on or linked to by the Application infringes your copyright, you should consider first contacting an attorney.</p>
+
+                    <h3>MODIFICATIONS AND INTERRUPTIONS</h3>
+                    <p>
+                        We reserve the right to change, modify, or remove the contents of the Application at any time or for any reason at our sole discretion without notice. However, we have no obligation to update any information on our Application. We also reserve the right to modify or discontinue all or part of the Application without notice at any time. We will not be liable to you or any third party for any modification, price change, suspension, or discontinuance of the Application.
+                    </p>
+
+                    <p>
+                        We cannot guarantee the Application will be available at all times. We may experience hardware, software, or other problems or need to perform maintenance related to the Application, resulting in interruptions, delays, or errors. We reserve the right to change, revise, update, suspend, discontinue, or otherwise modify the Application at any time or for any reason without notice to you. You agree that we have no liability whatsoever for any loss, damage, or inconvenience caused by your inability to access or use the Application during any downtime or discontinuance of the Application. Nothing in these Terms of Use will be construed to obligate us to maintain and support the Application or to supply any corrections, updates, or releases in connection therewith.
+                    </p>
+
+
+                    <h3>Limitation Of Liability</h3>
+                    <p>OUR AGGREGATE LIABILITY RELATING TO, ARISING OUT OF, OR IN ANY WAY IN CONNECTION WITH OUR TERMS, US, OR OUR SERVICES SHALL BE LIMITED TO LOSSES THAT ARE A REASONABLY FORESEEABLE CONSEQUENCE OF SUCH BREACH (EXCEPT IN RELATION TO DEATH, PERSONAL INJURY, OR FRAUDULENT MISREPRESENTATION) AND WILL NOT EXCEED THE AMOUNT YOU HAVE PAID US IN THE PAST TWELVE MONTHS. </p>
+                    <p>YOUR RIGHTS WITH RESPECT TO DrMSI Apps ARE NOT MODIFIED BY THE FOREGOING LIMITATION IF THE LAWS OF YOUR COUNTRY OF RESIDENCE, APPLICABLE AS A RESULT OF YOUR USE OF OUR SERVICES, DO NOT PERMIT IT.</p>
+                    <h3>Indemnification</h3>
+                    <p>If anyone brings a claim ("Third Party Claim") against us related to your actions, information, or content on DrMSI Apps, you will, to the extent permitted by law, indemnify and hold the DrMSI Apps Parties harmless from and against all liabilities, damages, losses, and expenses of any kind (including reasonable legal fees and costs) relating to, arising out of, or in any way in connection with any of the following: (a) your access to or use of our Services, including information provided in connection therewith; (b) your breach of our Terms or of applicable law; or (c) any misrepresentation made by you. You will cooperate as fully as required by us in the defense or settlement of any Third Party Claim. Your rights with respect to DrMSI Apps are not modified by the foregoing indemnification if the laws of your country of residence, applicable as a result of your use of our Services, do not permit it.</p>
+
+                    <h2>Dispute Resolution</h2>
+                    <h3>Informal Negotiations</h3>
+                    <p>To expedite resolution and control the cost of any dispute, controversy, or claim related to these Terms of Use (each a “Dispute” and collectively, the “Disputes”) brought by either you or us (individually, a “Party” and collectively, the “Parties”), the Parties agree to first attempt to negotiate any Dispute (except those Disputes expressly provided below) informally for at least 5 years before initiating arbitration. Such informal negotiations commence upon written notice from one Party to the other Party.</p>
+
+                    <h3>Availability And Termination Of Our Services</h3>
+                    <p><strong>Availability Of Our Services.</strong> We are always trying to improve our Services.That means we may add or remove our Services, features, functionalities, and the support of certain devices and platforms. Our Services may be interrupted, including for maintenance, repairs, upgrades, or network or equipment failures. We may discontinue some or all of our Services, including certain features and the support for certain devices and platforms, at any time after a notice period of 30 days, where possible. Events beyond our control may affect our Services, such as events in nature and other force majeure events.</p>
+                    <p><strong>Termination.</strong> Although we hope you remain a DrMSI Apps user, you can terminate your relationship with DrMSI Apps anytime for any reason by deleting your account. Contact Us for permanent account termination. </p>
+                    <p>We may also modify, suspend, or terminate your access to or use of our Services anytime for suspicious or unlawful conduct, including for fraud, or if we reasonably believe you violate our Terms or create harm, risk, or possible legal exposure for us, our users, or others. The following provisions will survive any termination of your relationship with DrMSI Apps: "Licenses," "Disclaimers," "Limitation of Liability," "Indemnification," "Dispute Resolution," "Availability and Termination of our Services," "Other," and "Special Arbitration Provision For United States Or Canada Users." If you believe your account's termination or suspension was in error, please see contact us section. </p>
+
+                    <h3>MODIFICATIONS AND INTERRUPTIONS</h3>
+                    <p>We reserve the right to change, modify, or remove the contents of the Application at any time or for any reason at our sole discretion without notice. However, we have no obligation to update any information on our Application. We also reserve the right to modify or discontinue all or part of the Application without notice at any time. We will not be liable to you or any third party for any modification, price change, suspension, or discontinuance of the Application.</p>
+
+                    <p>We cannot guarantee the Application will be available at all times. We may experience hardware, software, or other problems or need to perform maintenance related to the Application, resulting in interruptions, delays, or errors. We reserve the right to change, revise, update, suspend, discontinue, or otherwise modify the Application at any time or for any reason without notice to you. You agree that we have no liability whatsoever for any loss, damage, or inconvenience caused by your inability to access or use the Application during any downtime or discontinuance of the Application. Nothing in these Terms of Use will be construed to obligate us to maintain and support the Application or to supply any corrections, updates, or releases in connection therewith.</p>
+
+                    <h3>Other</h3>
+                    <ul>
+                        <li><p>Unless a mutually executed agreement between you and us states otherwise, our Terms make up the entire agreement between you and us regarding DrMSI Apps and our Services, and supersede any prior agreements.</p></li>
+                        <li><p>We reserve the right to designate in the future that certain of our Services are governed by separate terms (where, as applicable, you may separately consent).</p></li>
+                        <li><p>Our Services are not intended for distribution to or use in any country where such distribution or use would violate local law or would subject us to any regulations in another country. We reserve the right to limit our Services in any country.</p></li>
+                        <li><p>You will comply with all applicable United States and non-United States export control and trade sanctions laws ("Export Laws"). You will not, directly or indirectly, export, re-export, provide, or otherwise transfer our Services: (a) to any individual, entity, or country prohibited by Export Laws; (b) to anyone on United States or non-United States government restricted parties lists; or (c) for any purpose prohibited by Export Laws, including nuclear, chemical, or biological weapons, or missile technology applications without the required government authorizations. You will not use or download our Services if you are located in a restricted country, if you are currently listed on any United States or non-United States restricted parties list, or for any purpose prohibited by Export Laws, and you will not disguise your location through IP proxying or other methods.</p></li>
+                        <li><p>Any amendment to or waiver of our Terms requires our express consent. You have the right to terminate your relationship with DrMSI Apps at any time by deleting your account.</p></li>
+                        <li><p>We may amend or update these Terms. Unless otherwise required by law, we will provide you at least 30 days' notice of amendments to our Terms, which will give you the opportunity to review the revised Terms before continuing to use our Services. We will also update the "Last Modified" date at the top of our Terms. Changes to these Terms shall become effective no sooner than 30 days after we provide notice of planned changes. Please note that we may not be able to provide such notice for changes to these Terms that are required to address technical evolutions of our Services or for changes made for legal reasons, both of which will become effective immediately. Your continued use of our Services following the notice period of planned changes confirms your acceptance of our Terms, as amended. We hope you will continue using DrMSI Apps, but if you do not agree to our Terms, as amended, you must stop using our Services by deleting your account. </p></li>
+                        <li><p>All of our rights and obligations under our Terms are freely assignable by us to any of our affiliates or in connection with a merger, acquisition, restructuring, or sale of assets, or by operation of law or otherwise, and we may transfer your information to any of our affiliates, successor entities, or new owner. In the event of such an assignment, these Terms will continue to govern your relationship with such third party. We hope you will continue using DrMSI Apps, but if you do not agree to such an assignment, you must stop using our Services by deleting your account.</p></li>
+                        <li><p>You will not transfer any of your rights or obligations under our Terms to anyone else without our prior written consent.</p></li>
+                        <li><p>Nothing in our Terms will prevent us from complying with the law.</p></li>
+                        <li><p>Except as contemplated herein, our Terms do not give any third-party beneficiary rights.</p></li>
+                        <li><p>If we fail to enforce any of our Terms, it will not be considered a waiver.</p></li>
+                        <li><p>If any provision of these Terms is found to be unlawful, void, or for any reason unenforceable, then that provision shall be deemed severable from our Terms and shall not affect the validity and enforceability of the remaining provisions of our Terms, and the remaining portion of our Terms will remain in full force and effect.</p></li>
+                        <li><p>We reserve all rights not expressly granted by us to you. In certain jurisdictions, you may have legal rights as a consumer, and our Terms are not intended to limit such consumer legal rights that may not be waived by contract. Also, in certain jurisdictions, you may have legal rights as a data subject, and our Terms are not intended to limit such rights that may not be waived by contract.</p></li>
+                        <li><p>We always appreciate your feedback or other suggestions about DrMSI Apps and our Services, but you understand that you have no obligation to provide feedback or suggestions and that we may use your feedback or suggestions without any obligation to compensate you for them.</p></li>
+                    </ul>
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="container">
+                <button type="button" class="collapsible"><h2><b>Privacy Policy</b></h2></button>
+                <div class="content">
+                    <p>DrMSI Apps (“we” or “us” or “our”) respects the privacy of our users (“user” or “you”). This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our mobile application (the “Application”). Please read this Privacy Policy carefully. IF YOU DO NOT AGREE WITH THE TERMS OF THIS PRIVACY POLICY, PLEASE DO NOT ACCESS THE APPLICATION.</p>
+
+                    <p>We reserve the right to make changes to this Privacy Policy at any time and for any reason. We will alert you about any changes by updating the “Last updated” date of this Privacy Policy. You are encouraged to periodically review this Privacy Policy to stay informed of updates. You will be deemed to have been made aware of, will be subject to, and will be deemed to have accepted the changes in any revised Privacy Policy by your continued use of the Application after the date such revised Privacy Policy is posted.</p>
+
+                    <p>This Privacy Policy does not apply to the third-party online/mobile store from which you install the Application or make payments, including any in-game virtual items, which may also collect and use data about you. We are not responsible for any of the data collected by any such third party.</p>
+
+                    <h3>COLLECTION OF YOUR INFORMATION</h3>
+                    <p>We may collect information about you in a variety of ways. The information we may collect via the Application depends on the content and materials you use, and includes:</p>
+
+                    <h3><strong>Personal Data</strong></h3>
+                    <p>Demographic and other personally identifiable information (such as your name and email address) that you voluntarily give to us when choosing to participate in various activities related to the Application, such as chat, posting messages in comment sections or in our forums, liking posts, sending feedback, and responding to surveys. If you choose to share data about yourself via your profile, online chat, or other interactive areas of the Application, please be advised that all data you disclose in these areas is public and your data will be accessible to anyone who accesses the Application.</p>
+
+                    <h3><strong>Derivative Data</strong></h3>
+                    <p>Information our servers automatically collect when you access the Application, such as your native actions that are integral to the Application, including liking, re-blogging, or replying to a post, as well as other interactions with the Application and other users via server log files.</p>
+
+                    <h3><strong>Financial Data</strong></h3>
+                    <p>Financial information, such as data related to your payment method (e.g. valid credit card number, card brand, expiration date) that we may collect when you purchase, order, return, exchange, or request information about our services from the Application. We store only very limited, if any, financial information that we collect. Otherwise, all financial information is stored by our payment processor, Google Pay and Apple Pay, and you are encouraged to review their privacy policy and contact them directly for responses to your questions.</p>
+
+                    <h3><strong>Third Parties Account Permissions</strong></h3>
+                    <p>The Application may by default access your Google/Apple/Facebook basic account information, including your name, email, gender, birthday, current city, and profile picture URL, as well as other information that you choose to make public. We may also request access to other permissions related to your account, such as friends, checkins, and likes, and you may choose to grant or deny us access to each individual permission. For more information regarding permissions, refer to the third party company Permissions Reference page.</p>
+
+
+                    <h3><strong>Data from Social Networks</strong></h3>
+                    <p>User information from social networking sites, including your name, your social network username, location, gender, birth date, email address, profile picture, and public data for contacts, if you connect your account to such social networks. This information may also include the contact information of anyone you invite to use and/or join the Application.</p>
+
+
+                    <h3><strong>Geo-Location Information</strong></h3>
+                    <p>We may request access or permission to and track location-based information from your mobile device, either continuously or while you are using the Application, to provide location-based services. If you wish to change our access or permissions, you may do so in your device’s settings.</p>
+
+
+                    <h3><strong>Mobile Device Access</strong></h3>
+                    <p>We may request access or permission to certain features from your mobile device, including your mobile device’s [for example: permisssion to connect to internet, internal storage, media, camera ...]. If you wish to change our access or permissions, you may do so in your device’s settings.</p>
+
+                    <h3><strong>Mobile Device Data</strong></h3>
+                    <p>Device information such as your mobile device ID number, model, and manufacturer, version of your operating system, phone number, country, location, and any other data you choose to provide.</p>
+
+                    <h3><strong>Push Notifications</strong></h3>
+                    <p>We may request to send you push notifications regarding your account or the Application. If you wish to opt-out from receiving these types of communications, you may turn them off in your device’s settings.</p>
+
+                    <h3><strong>Third-Party Data</strong></h3>
+                    <p>Information from third parties, such as personal information or network friends, if you connect your account to the third party and grant the Application permission to access this information.</p>
+
+                    <ul>
+                        <li><p><strong>Information Others Provide About You.</strong> We receive information about you from other users and businesses. For example, when other users or businesses you know use our Services, they may provide your phone number, name, and other information (like information from their mobile address book or in the case of businesses, additional information about you such as unique identifiers), just as you may provide theirs, or they may send you a message, send messages to groups to which you belong, or call you. We require each of these users and businesses to have lawful rights to collect, use, and share your information before providing any information to us. </p></li>
+                        <li><p><strong><a class="_36or" name="privacy-policy-businesses-on-DrMSI Apps" href="#" rel="noopener" role="button"></a>Businesses On DrMSI Apps.</strong> Businesses you interact with using DrMSI Apps provide us information about their interactions with you. A business on DrMSI Apps may also use another company to assist it in storing, reading, and responding to your messages on behalf of and in support of that business. Please note that when businesses use third-party services, their own terms and privacy policies will govern your use of those services and their use of your information on those services. </p></li>
+                        <li><p><strong>Third-Party Services.</strong> We allow you to use our Services in connection with third-party services. If you use our Services with such third-party services, we may receive information about you from them; for example, if you use the DrMSI Apps share button on a news service to share a news article with your DrMSI Apps contacts, groups, or broadcast lists on our Services, or if you choose to access our Services through a mobile carrier's or device provider's promotion of our Services. Please note that when you use third-party services, their own terms and privacy policies will govern those services.</p></li>
+                    </ul>
+
+                    <h3><strong>Data From Contests, Giveaways, and Surveys</strong></h3>
+                    <p>Personal and other information you may provide when entering contests or giveaways and/or responding to surveys.</p>
+
+                    <h3><strong>Automatically Collected Information</strong></h3>
+
+                    <ul>
+                        <li><p><strong>Usage And Log Information.</strong> We collect information about your activity on our Services, like service-related, diagnostic, and performance information. This includes information about your activity (including how you use our Services, your Services settings, how you interact with others using our Services, and the time, frequency, and duration of your activities and interactions), log files, and diagnostic, crash, website, and performance logs and reports. This also includes information about when you registered to use our Services, the features you use like our messaging, calling, Status, or groups features, profile photo, about information, whether you are online, when you last used our Services (your "last seen"), and when you last updated your about information. </p></li>
+                        <li><p><strong>Device And Connection Information.</strong> We collect device and connection-specific information when you install, access, or use our Services. This includes information like hardware model, operating system information, battery level, signal strength, app version, browser information, and mobile network, connection information including phone number, mobile operator or ISP, language and time zone, and IP, device operations information, and identifiers like device identifiers.</p></li>
+                        <li><p><strong>Location Information.</strong> We collect device location information if you use our location features, like when you choose to share your location with your contacts, view locations nearby or those others have shared with you, and the like, and for diagnostics and troubleshooting purposes such as if you are having trouble with our app's location features. We use various technologies to determine location, including IP, GPS, Bluetooth signals, and information about nearby Wi-Fi access points, beacons, and cell towers.</p></li>
+                        <li><p><strong>Cookies.</strong> We use cookies to operate and provide our Services, including to provide our Services that are web-based, improve your experiences, understand how our Services are being used, and customize our Services. For example, we use cookies to provide DrMSI Apps for web and desktop and other web-based services. We may also use cookies to understand which of our FAQs are most popular and to show you relevant content related to our Services. Additionally, we may use cookies to remember your choices, like your language preferences, to provide a safer experience, and otherwise to customize our Services for you.</p></li>
+                    </ul>
+
+
+                    <h3>USE OF YOUR INFORMATION</h3>
+
+                    <p>We use the information we have (subject to choices you make) to operate, provide, improve, understand, customize, support, and market our Services. Here's how:</p>
+
+                    <ul>
+                        <li><p><strong>Our Services.</strong> We use the information we have to operate and provide our Services, including providing customer support, and improving, fixing, and customizing our Services. We understand how people use our Services and analyze and use the information we have to evaluate and improve our Services, research, develop, and test new services and features, and conduct troubleshooting activities. We also use your information to respond to you when you contact us.</p></li>
+                        <li><p><strong>Safety And Security.</strong> We verify accounts and activity, and promote safety and security on and off our Services, such as by investigating suspicious activity or violations of our Terms, and to ensure our Services are being used legally.</p></li>
+                        <li><p><strong>Commercial Messaging.</strong> We will allow you and third parties, like businesses, to communicate with each other using DrMSI Apps, such as through order, transaction, and appointment information, delivery and shipping notifications, product and service updates, and marketing. For example, you may receive flight status information for upcoming travel, a receipt for something you purchased, or a notification when a delivery will be made. Messages you may receive containing marketing could include an offer for something that might interest you. We do not want you to have a spammy experience; as with all of your messages, you can manage these communications, and we will honor the choices you make. </p></li>
+                        <li><p><strong>Measurement, Analytics, And Other Business Services.</strong> We help businesses who use DrMSI Apps measure the effectiveness and distribution of their services and messages, and understand how people interact with them on our Services.</p></li>
+                    </ul>
+
+                    <p>Having accurate information about you permits us to provide you with a smooth, efficient, and customized experience. Specifically, we may use information collected about you via the Application to: </p>
+
+                    <ol>
+                        <li>Administer sweepstakes, promotions, and contests.</li>
+                        <li>Assist law enforcement and respond to subpoena.</li>
+                        <li>Compile anonymous statistical data and analysis for use internally or with third parties.</li>
+                        <li>Create and manage your account.</li>
+                        <li>Deliver targeted advertising, coupons, newsletters, and other information regarding promotions and the Application to you.</li>
+                        <li>Email you regarding your account or order.</li>
+                        <li>Enable user-to-user communications.</li>
+                        <li>Fulfill and manage purchases, orders, payments, and other transactions related to the Application.</li>
+                        <li>Generate a personal profile about you to make future visits to the Application more personalized.</li>
+                        <li>Increase the efficiency and operation of the Application.</li>
+                        <li>Monitor and analyze usage and trends to improve your experience with the Application.</li>
+                        <li>Notify you of updates to the Application.</li>
+                        <li>Offer new products, services, mobile applications, and/or recommendations to you.</li>
+                        <li>Perform other business activities as needed.</li>
+                        <li>Prevent fraudulent transactions, monitor against theft, and protect against criminal activity.</li>
+                        <li>Process payments and refunds.</li>
+                        <li>Request feedback and contact you about your use of the Application.</li>
+                        <li>Resolve disputes and troubleshoot problems.</li>
+                        <li>Respond to product and customer service requests.</li>
+                        <li>Send you a newsletter.</li>
+                        <li>Solicit support for the Application.</li>
+                        <li><span style="color: #8351f9;">[Other]</span></li>
+                    </ol>
+
+
+                    <h3>DISCLOSURE OF YOUR INFORMATION</h3>
+
+                    <p>We may share information we have collected about you in certain situations. Your information may be disclosed as follows:</p>
+
+
+                    <h3><strong>By Law or to Protect Rights</strong></h3>
+                    <p>If we believe the release of information about you is necessary to respond to legal process, to investigate or remedy potential violations of our policies, or to protect the rights, property, and safety of others, we may share your information as permitted or required by any applicable law, rule, or regulation. This includes exchanging information with other entities for fraud protection and credit risk reduction.</p>
+
+
+                    <h3><strong>Third-Party Service Providers</strong></h3>
+                    <p>We may share your information with third parties that perform services for us or on our behalf, including payment processing, data analysis, email delivery, hosting services, customer service, and marketing assistance.</p>
+
+                    <h3><strong>Marketing Communications</strong></h3>
+                    <p>With your consent, or with an opportunity for you to withdraw consent, we may share your information with third parties for marketing purposes, as permitted by law.</p>
+
+                    <h3><strong>Interactions with Other Users</strong></h3>
+                    <p>If you interact with other users of the Application, those users may see your name, profile photo, and descriptions of your activity, including sending invitations to other users, chatting with other users, liking posts, following blogs.</p>
+
+                    <h3><strong>Online Postings</strong></h3>
+                    <p>When you post comments, contributions or other content to the Applications, your posts may be viewed by all users and may be publicly distributed outside the Application in perpetuity</p>
+
+                    <h3><strong>Third-Party Advertisers</strong></h3>
+                    <p>We may use third-party advertising companies to serve ads when you visit the Application. These companies may use information about your visits to the Application and other websites that are contained in web cookies in order to provide advertisements about goods and services of interest to you.</p>
+
+                    <h3><strong>Affiliates</strong></h3>
+                    <p>We may share your information with our affiliates, in which case we will require those affiliates to honor this Privacy Policy. Affiliates include our parent company and any subsidiaries, joint venture partners or other companies that we control or that are under common control with us.</p>
+
+                    <h3><strong>Business Partners</strong></h3>
+                    <p>We may share your information with our business partners to offer you certain products, services or promotions.</p>
+
+                    <h3><strong>Offer Wall</strong></h3>
+                    <p>The Application may display a third-party-hosted “offer wall.” Such an offer wall allows third-party advertisers to offer virtual currency, gifts, or other items to users in return for acceptance and completion of an advertisement offer. Such an offer wall may appear in the Application and be displayed to you based on certain data, such as your geographic area or demographic information. When you click on an offer wall, you will leave the Application. A unique identifier, such as your user ID, will be shared with the offer wall provider in order to prevent fraud and properly credit your account.</p>
+
+                    <h3><strong>Social Media Contacts</strong></h3>
+                    <p>If you connect to the Application through a social network, your contacts on the social network will see your name, profile photo, and descriptions of your activity.</p>
+
+                    <h3><strong>Other Third Parties</strong></h3>
+                    <p>We may share your information with advertisers and investors for the purpose of conducting general business analysis. We may also share your information with such third parties for marketing purposes, as permitted by law.</p>
+
+                    <h3><strong>Sale or Bankruptcy</strong></h3>
+                    <p>If we reorganize or sell all or a portion of our assets, undergo a merger, or are acquired by another entity, we may transfer your information to the successor entity. If we go out of business or enter bankruptcy, your information would be an asset transferred or acquired by a third party. You acknowledge that such transfers may occur and that the transferee may decline honor commitments we made in this Privacy Policy.</p>
+                    <p>We are not responsible for the actions of third parties with whom you share personal or sensitive data, and we have no authority to manage or control third-party solicitations. If you no longer wish to receive correspondence, emails or other communications from third parties, you are responsible for contacting the third party directly.</p>
+
+                    <h3>How The General Data Protection Regulation Applies To Our European Region Users</h3>
+                    <p><strong>Our Legal Bases For Processing Information</strong></p>
+                    <p>We collect, use, and share the information we have as described above:</p>
+                    <ul>
+                        <li><p>as necessary to fulfill our Terms;</p></li>
+                        <li><p>consistent with your consent, which you can revoke at any time;</p></li>
+                        <li><p>as necessary to comply with our legal obligations; </p></li>
+                        <li><p>occasionally to protect your vital interests, or those of others;</p></li>
+                        <li><p>as necessary in the public interest; and</p></li>
+                        <li><p>as necessary for our (or others') legitimate interests, including our interests in providing an innovative, relevant, safe, and profitable service to our users and partners, unless those interests are overridden by your interests or fundamental rights and freedoms that require protection of personal data.</p></li>
+                    </ul>
+
+
+                    <p><strong>How You Exercise Your Rights</strong></p>
+
+                    <p>Under the General Data Protection Regulation or other applicable local laws, you have the right to access, rectify, port, and erase your information, as well as the right to restrict and object to certain processing of your information. This includes the right to object to our processing of your information for direct marketing and the right to object to our processing of your information where we are performing a task in the public interest or pursuing our legitimate interests or those of a third party. You can access tools to rectify, update, and erase your information directly in-app as described in the Managing and Deleting Your Information section. If we process your information based on our legitimate interests or those of a third party, or in the public interest, you can object to this processing, and we will cease processing your information, unless the processing is based on compelling legitimate grounds or is needed for legal reasons. Where we use your information for direct marketing for our own Services, you can always object and opt out of future marketing messages using the unsubscribe link in such communications, or by using our in-app "Block" feature.</p>
+
+                    <h3>Managing And Deleting Your Information</h3>
+
+                    <p>We store information until it is no longer necessary to provide our services, or until your account is deleted, whichever comes first. This is a case-by-case determination that depends on things like the nature of the information, why it is collected and processed, and relevant legal or operational retention needs.  </p>
+
+                    <ul>
+                    </ul>
+
+
+                    <h3>TRACKING TECHNOLOGIES</h3>
+
+                    <h3><strong>Cookies and Web Beacons</strong></h3>
+                    <p>We may use cookies, web beacons, tracking pixels, and other tracking technologies on the Application to help customize the Application and improve your experience. When you access the Application, your personal information is not collected through the use of tracking technology. Most browsers are set to accept cookies by default. You can remove or reject cookies, but be aware that such action could affect the availability and functionality of the Application. You may not decline web beacons. However, they can be rendered ineffective by declining all cookies or by modifying your web browser’s settings to notify you each time a cookie is tendered, permitting you to accept or decline cookies on an individual basis.</p>
+
+                    <h3><strong>Internet-Based Advertising</strong></h3>
+                    <p>Additionally, we may use third-party software to serve ads on the Application, implement email marketing campaigns, and manage other interactive marketing initiatives. This third-party software may use cookies or similar tracking technology to help manage and optimize your online experience with us. For more information about opting-out of interest-based ads, visit the Network Advertising Initiative Opt-Out Tool or Digital Advertising Alliance Opt-Out Tool.</p>
+
+                    <h3><strong>Website Analytics</strong></h3>
+                    <p>We may also partner with selected third-party vendors, such as [List any third-party analytics that your mobile app uses (eg. Google Analytics)] to allow tracking technologies and remarketing services on the Application through the use of first party cookies and third-party cookies, to, among other things, analyze and track users’ use of the Application, determine the popularity of certain content, and better understand online activity. By accessing the Application, you consent to the collection and use of your information by these third-party vendors. You are encouraged to review their privacy policy and contact them directly for responses to your questions. We do not transfer personal information to these third-party vendors.</p>
+
+                    <p>You should be aware that getting a new computer, installing a new browser, upgrading an existing browser, or erasing or otherwise altering your browser’s cookies files may also clear certain opt-out cookies, plug-ins, or settings.</p>
+
+                    <h3><strong>THIRD-PARTY WEBSITES</strong></h3>
+                    <p>The Application may contain links to third-party websites and applications of interest, including advertisements and external services, that are not affiliated with us. Once you have used these links to leave the Application, any information you provide to these third parties is not covered by this Privacy Policy, and we cannot guarantee the safety and privacy of your information. Before visiting and providing any information to any third-party websites, you should inform yourself of the privacy policies and practices (if any) of the third party responsible for that website, and should take those steps necessary to, in your discretion, protect the privacy of your information. We are not responsible for the content or privacy and security practices and policies of any third parties, including other sites, services or applications that may be linked to or from the Application.</p>
+
+                    <h3><strong>SECURITY OF YOUR INFORMATION</strong></h3>
+                    <p>We use administrative, technical, and physical security measures to help protect your personal information. While we have taken reasonable steps to secure the personal information you provide to us, please be aware that despite our efforts, no security measures are perfect or impenetrable, and no method of data transmission can be guaranteed against any interception or other type of misuse. Any information disclosed online is vulnerable to interception and misuse by unauthorized parties. Therefore, we cannot guarantee complete security if you provide personal information.</p>
+
+                    <h3><strong>POLICY FOR CHILDREN</strong></h3>
+
+                    <p>We do not knowingly solicit information from or market to children under the age of 13. If you become aware of any data we have collected from children under age 13, please contact us using the contact information provided below.</p>
+
+                    <h3><strong>CONTROLS FOR DO-NOT-TRACK FEATURES</strong></h3>
+                    <p>Most web browsers and some mobile operating systems [and our mobile applications] include a Do-Not-Track (“DNT”) feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. No uniform technology standard for recognizing and implementing DNT signals has been finalized. As such, we do not currently respond to DNT browser signals or any other mechanism that automatically communicates your choice not to be tracked online. If a standard for online tracking is adopted that we must follow in the future, we will inform you about that practice in a revised version of this Privacy Policy.</p>
+
+
+                    <h3>OPTIONS REGARDING YOUR INFORMATION</h3>
+
+                    <h3><strong>Account Information</strong></h3>
+                    <p>You may at any time review or change the information in your account or terminate your account by</p>
+
+                    <ul>
+                        <li>Logging into your account settings and updating your account</li>
+                        <li>Contacting us using the contact information provided below</li>
+                    </ul>
+
+                    <p>Upon your request to terminate your account, we will deactivate or delete your account and information from our active databases. However, some information may be retained in our files to prevent fraud, troubleshoot problems, assist with any investigations, enforce our Terms of Use and/or comply with legal requirements.</p>
+
+                    <h3><strong>Emails and Communications</strong></h3>
+                    <p>If you no longer wish to receive correspondence, emails, or other communications from us, you may opt-out by: </p>
+
+                    <ul>
+                        <li>Noting your preferences at the time you register your account with the Application</li>
+                        <li>Logging into your account settings and updating your preferences.</li>
+                        <li>Contacting us using the contact information provided below</li>
+                    </ul>
+
+                    <p>If you no longer wish to receive correspondence, emails, or other communications from third parties, you are responsible for contacting the third party directly.</p>
+
+
+
+                    <h3>Updates To Our Policy</h3>
+                    <p>We will notify you before we make changes to this Privacy Policy and give you the opportunity to review the revised Privacy Policy before you choose to continue using our Services.</p>
+
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="container">
+                <button type="button" class="collapsible"><h2><b>EULA - End User License Agreement</b></h2></button>
+                <div class="content">
+                    <p><br clear="all"><br clear="all"><strong>DrMSI Apps</strong>  End User License Agreement<br clear="all">This End User License Agreement (“Agreement”) is between you and <strong>DrMSI Apps</strong> and governs use of this app made available through the Apple App Store / Google Play Store. By installing the <strong>DrMSI Apps</strong> , you agree to be bound by this Agreement and understand that there is no tolerance for objectionable content. If you do not agree with the terms and conditions of this Agreement, you are not entitled to use the <strong>DrMSI Apps</strong> .&lt;<br clear="all"><br clear="all">In order to ensure <strong>DrMSI Apps</strong> provides the best experience possible for everyone, we strongly enforce a no tolerance policy for objectionable content. If you see inappropriate content, please use the "Report as offensive" feature found under each post.<br clear="all"><br clear="all">1. Parties This Agreement is between you and <strong>DrMSI Apps</strong> only, and neither Apple, Inc. (“Apple”) or Google Inc. Notwithstanding the foregoing, you acknowledge that Google or Apple and its subsidiaries are third party beneficiaries of this Agreement and Apple/Google has the right to enforce this Agreement against you. <strong>DrMSI Apps</strong>, neither Apple or Google, is solely responsible for the <strong>DrMSI Apps</strong>  and its content.<br><br clear="all">2. Privacy <strong>DrMSI Apps</strong> may collect and use information about your usage of the <strong>DrMSI Apps</strong> , including certain types of information from and about your device. <strong>DrMSI Apps</strong> may use this information, as long as it is in a form that does not personally identify you, to measure the use and performance of the <strong>DrMSI Apps</strong> .<br><br clear="all">3. Limited License <strong>DrMSI Apps</strong> grants you a limited, non-exclusive, non-transferable, revocable license to use <strong>DrMSI Apps</strong>  for your personal, non-commercial purposes. You may only use the<strong>DrMSI Apps</strong>  on devices that you own or control and as permitted by the App Store Terms of Service / Google Terms.<br clear="all"><br clear="all">4. Age Restrictions By using the <strong>DrMSI Apps</strong> , you represent and warrant that (a) you are 13 years or 16 years if you live in the (European Region) or older and you agree to be bound by this Agreement; (b) if you are under that age, you have obtained verifiable consent from a parent or legal guardian; and (c) your use of the <strong>DrMSI Apps</strong>  does not violate any applicable law or regulation. Your access to the <strong>DrMSI Apps</strong>  may be terminated without warning if <strong>DrMSI Apps</strong> believes, in its sole discretion, that you are under the limit age and have not obtained verifiable consent from a parent or legal guardian. If you are a parent or legal guardian and you provide your consent to your child's use of the <strong>DrMSI Apps</strong> , you agree to be bound by this Agreement in respect to your child's use of the <strong>DrMSI Apps</strong> .<br><br clear="all">5. Objectionable Content Policy Content may not be submitted to <strong>DrMSI Apps</strong>, who will moderate all content and ultimately decide whether or not to post a submission to the extent such content includes, is in conjunction with, or alongside any, Objectionable Content. Objectionable Content includes, but is not limited to: (i) sexually explicit materials; (ii) obscene, defamatory, libelous, slanderous, violent and/or unlawful content or profanity; (iii) content that infringes upon the rights of any third party, including copyright, trademark, privacy, publicity or other personal or proprietary right, or that is deceptive or fraudulent; (iv) content that promotes the use or sale of illegal or regulated substances, tobacco products, ammunition and/or firearms; and (v) gambling, including without limitation, any online casino, sports books, bingo or poker.<br><br clear="all">6. Warranty <strong>DrMSI Apps</strong> disclaims all warranties about the <strong>DrMSI Apps</strong>  to the fullest extent permitted by law. To the extent any warranty exists under law that cannot be disclaimed, <strong>DrMSI Apps</strong>, neither Apple nor Google, shall be solely responsible for such warranty.<br><br clear="all">7. Maintenance and Support <strong>DrMSI Apps</strong> does provide minimal maintenance or support for it but not to the extent that any maintenance or support is required by applicable law, <strong>DrMSI Apps</strong>, neither Apple nor Google, shall be obligated to furnish any such maintenance or support.<br><br clear="all">8. Product Claims <strong>DrMSI Apps</strong>, neither Apple nor Google, is responsible for addressing any claims by you relating to the <strong>DrMSI Apps</strong>  or use of it, including, but not limited to: (i) any product liability claim; (ii) any claim that the <strong>DrMSI Apps</strong>  fails to conform to any applicable legal or regulatory requirement; and (iii) any claim arising under consumer protection or similar legislation. Nothing in this Agreement shall be deemed an admission that you may have such claims.<br><br clear="all">9. Third Party Intellectual Property Claims <strong>DrMSI Apps</strong> shall not be obligated to indemnify or defend you with respect to any third party claim arising out or relating to the <strong>DrMSI Apps</strong> . To the extent <strong>DrMSI Apps</strong> is required to provide indemnification by applicable law, <strong>DrMSI Apps</strong>, neither Apple nor Google, shall be solely responsible for the investigation, defense, settlement and discharge of any claim that the <strong>DrMSI Apps</strong>  or your use of it infringes any third party intellectual property right.</p>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="container">
+                <button type="button" class="collapsible"><h2><b>Contact Us</b></h2></button>
+                <div class="content">
+                    <p><a id="mailtopolicy" href="mailto:drmsi86+policy@gmail.com" target="_blank" rel="noopener">Contact Email</a></p>
+                    <p>
+                        DrMSI Apps
+                    </p>
+                    <p>
+                        Amman, Jordan
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="container">
+                <button type="button" class="collapsible"><h2><b>Request delete Acount</b></h2></button>
+                <div class="content">
+                    <h1>Account Deletion Request</h1>
+                    <p>Please fill out the form below to request the deletion of your account and associated data.</p>
+
+                    <form id="deletionForm" action="mailto:ahlamshamelcom+rdu?subject=Account%20Deletion%20Request&body=" method="post" enctype="text/plain">
+
+                        <div>
+                        <label for="name">Your Name:</label>
+                        <input type="text" id="name" name="name" required>
+                        </div>
+                        <div>
+                        <label for="email">Your Email Address:</label>
+                        <input type="email" id="email" name="email" required>
+                        </div>
+                        <div>
+                        <label for="username">Username (if applicable):</label>
+                        <input type="text" id="username" name="username">
+                        </div>
+                        <div>
+                        <label for="reason">Reason for Deletion (Optional):</label>
+                        <textarea id="reason" name="reason"></textarea>
+                        </div>
+                        <div>
+                        <button type="submit">Submit Request</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</center>
+
+
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      });
+    }
+</script>
+
+
+<script>
+    const hash = window.location.hash.substring(1);
+
+    if (hash) {
+        document.title = hash;
+        const titleElement = document.getElementById('dynamicTitle');
+        if(titleElement){
+            titleElement.textContent = hash;
+        }
+
+        if (hash.toLowerCase() === "ahlamshamel") {
+            theemail = 'ahlamshamelcom';
+        }
+
+        if (theemail) {
+            const mailtoLink = document.getElementById('mailtopolicy');
+
+            if (mailtoLink) {
+                mailtoLink.href = `mailto:${theemail}+policy@gmail.com`;
+            }
+        }
+    }
+
+
+
+</script>
+
+<script>
+    document.getElementById('deletionForm').addEventListener('submit', function(event) {
+        let name = encodeURIComponent(document.getElementById('name').value);
+        let email = encodeURIComponent(document.getElementById('email').value);
+        let username = encodeURIComponent(document.getElementById('username').value);
+        let reason = encodeURIComponent(document.getElementById('reason').value);
+
+        let body = "Name: " + name + "%0D%0AEmail: " + email + "%0D%0AUsername: " + username + "%0D%0AReason: " + reason;
+
+        this.action = "mailto:${theemail}+rd@gmail.com?subject=Account%20Deletion%20Request&body=" + body;
+    });
+
+</script>
+
+</body>
+</html>
+
+

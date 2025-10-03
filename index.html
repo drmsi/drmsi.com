@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DRMSI - Professional Trading Signals & Market Analysis</title>
     <meta name="description" content="Professional forex and crypto trading signals, real-time market analysis, and educational resources for traders.">
-    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-177577169-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-177577169-1');
+    </script>
+
+    <script data-ad-client="ca-pub-8234881172646345" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
     <style>
         * {
             margin: 0;
@@ -201,6 +213,54 @@
             border: 1px solid var(--border-color);
         }
 
+        /* Services Section */
+        .services-section {
+            padding: 4rem 0;
+        }
+
+        .app-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0 3rem;
+        }
+
+        .app-links img {
+            width: 125px;
+            height: 125px;
+            transition: transform 0.3s;
+        }
+
+        .app-links img:hover {
+            transform: scale(1.05);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-box {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.1);
+        }
+
+        .service-box h3 {
+            color: var(--accent-gold);
+            margin: 1rem 0;
+        }
+
         /* Gold Chart Section */
         .gold-chart-section {
             background: var(--bg-secondary);
@@ -344,6 +404,117 @@
             color: var(--accent-gold);
         }
 
+        /* About Us Section */
+        .about-section {
+            padding: 4rem 0;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+
+        .about-text h3 {
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* NFT Section */
+        .nft-section {
+            background: var(--bg-secondary);
+            padding: 4rem 0;
+        }
+
+        .nft-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .nft-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .nft-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.2);
+        }
+
+        .nft-image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .nft-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .nft-details {
+            padding: 1.5rem;
+        }
+
+        .nft-details h4 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .nft-details p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .nft-author {
+            color: var(--accent-gold);
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
+        .view-all-btn {
+            display: inline-block;
+            background: var(--accent-gold);
+            color: var(--bg-primary);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 2rem 0;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .view-all-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.3);
+        }
+
         /* Footer */
         footer {
             background: var(--bg-secondary);
@@ -472,8 +643,8 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#analysis">Analysis</a></li>
                 <li><a href="#education">Education</a></li>
+                <li><a href="#nft">NFT Market</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
             </ul>
             <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
         </nav>
@@ -482,6 +653,7 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <h1>Professional Trading Intelligence</h1>
+        <p style="font-style: italic; color: var(--accent-gold); margin-bottom: 1rem;">Empower yourself with knowledge, transform your life with action.</p>
         <p>Real-time market analysis, trading signals, and educational resources for serious traders</p>
         <a href="#analysis" class="cta-button">Explore Market Analysis</a>
     </section>
@@ -534,6 +706,42 @@
         </div>
     </div>
 
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <h2 class="section-title">Our <span style="color: var(--accent-gold);">Services</span></h2>
+            <p style="text-align: center; color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+                Master your finances, explore business ideas, prioritize your health - all with DrMSI
+            </p>
+
+            <div class="app-links">
+                <a href="https://apps.apple.com/tt/developer/mohammad-ibreighith/id911144500" target="_blank">
+                    <img src="images/applestore.png" alt="Download on App Store">
+                </a>
+                <a href="https://play.google.com/store/apps/dev?id=7509485406304298835" target="_blank">
+                    <img src="images/googleplay.png" alt="Get it on Google Play">
+                </a>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-box">
+                    <h3>Trading Technical Analysis</h3>
+                    <p>Level up your trading: DrMSI equips you with powerful technical analysis tools.</p>
+                    <p>Trade smarter, not harder: DrMSI simplifies technical analysis for profitable opportunities.</p>
+                </div>
+                <div class="service-box">
+                    <h3>Business Ideas</h3>
+                    <p>From concept to creation. Explore business ideas and build your entrepreneurial journey.</p>
+                </div>
+                <div class="service-box">
+                    <h3>Expert Support</h3>
+                    <p>Thrive, not just survive</p>
+                    <p>Get expert guidance on prioritizing your health</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Gold Chart Section -->
     <section class="gold-chart-section">
         <div class="container">
@@ -584,6 +792,19 @@
           <a href="https://one.justmarkets.link/a/ffrhc0iuso" referrerpolicy="no-referrer-when-downgrade"><img src="images/jm.jpg" style="max-width: 500px; width: 100%; height: auto;" /></a>
           </center>
         </div>
+		
+		         <center>
+                    <!--            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+                    <!-- AhlamWeb_Box -->
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-8234881172646345"
+                         data-ad-slot="9286012288"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                </center>
+				
     </section>
 
 <br></br>
@@ -706,6 +927,17 @@
 		  
     </section>
 	
+	                   <center>
+                    <!--            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+                    <!-- AhlamWeb_Box -->
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-8234881172646345"
+                         data-ad-slot="9286012288"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                </center>
 
     <!-- Banner Section -->
     <section>
@@ -765,18 +997,143 @@
         </div>
     </section>
 
+    <!-- About Us Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <h2 class="section-title">About <span style="color: var(--accent-gold);">Us</span></h2>
+            <p style="text-align: center; color: var(--text-secondary); max-width: 600px; margin: 0 auto 3rem;">
+                DrMSI empowers your journey with curated knowledge and expert guidance across finance, health, and exploration.
+            </p>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="images/about-img.png" alt="About DrMSI">
+                </div>
+                <div class="about-text">
+                    <h3>We Are All DrMSI</h3>
+                    <p>Explore, learn, and thrive with DrMSI, your one-stop shop for personal growth.</p>
+                    <p>We provide a wealth of curated content and expert support across various aspects of your life:</p>
+                    <p><strong>Master your finances:</strong> Gain insights from market analysis and explore business ideas to fuel your success.</p>
+                    <p><strong>Prioritize your health:</strong> Connect with experts and access valuable resources to achieve optimal well-being.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NFT Market Section -->
+    <section class="nft-section" id="nft">
+        <div class="container">
+            <h2 class="section-title">DrMSI NFT <span style="color: var(--accent-gold);">Market</span></h2>
+            <p style="text-align: center; color: var(--text-secondary); max-width: 700px; margin: 0 auto;">
+                Collect, create, and connect. DRMSI NFT Marketplace empowers you to buy, sell, and mint unique digital assets. Join a thriving community of creators and collectors.
+            </p>
+
+            <center>
+                <a href="https://www.binance.com/en/nft/my-nfts/collected/drmsi-962360a9eb4143c08addef6f254406db" class="view-all-btn" target="_blank">
+                    View All NFT Collection
+                </a>
+            </center>
+
+            <div class="nft-grid">
+                <div class="nft-card">
+                    <a href="https://www.binance.com/en/nft/item/89765353" target="_blank">
+                        <div class="nft-image">
+                            <img src="https://public.nftstatic.com/static/nft/res/nft-cex/S3/1712780182157_t3lgx46rltf14d1c2kivmq7a3ncl5yqb.jpeg" alt="Geo Eagle logo">
+                        </div>
+                    </a>
+                    <div class="nft-details">
+                        <h4>Geo Eagle Logo</h4>
+                        <p class="nft-author">DrMSI</p>
+                        <p>An eagle in geometric style, facing forward with wings outstretched...</p>
+                    </div>
+                </div>
+
+                <div class="nft-card">
+                    <a href="https://www.binance.com/en/nft/item/89765365" target="_blank">
+                        <div class="nft-image">
+                            <img src="https://public.nftstatic.com/static/nft/res/nft-cex/S3/1712811623198_s8v4lu2d3ol72tkmp4m3ymkvxv06av7i.jpeg" alt="The Perilous Crossing">
+                        </div>
+                    </a>
+                    <div class="nft-details">
+                        <h4>The Perilous Crossing</h4>
+                        <p class="nft-author">DrMSI</p>
+                        <p>A daring voyage in cubist style, ship navigating treacherous passage...</p>
+                    </div>
+                </div>
+
+                <div class="nft-card">
+                    <a href="https://www.binance.com/en/nft/item/89765364" target="_blank">
+                        <div class="nft-image">
+                            <img src="https://public.nftstatic.com/static/nft/res/nft-cex/S3/1712810748728_m2fe0rqncypc7l2e7qdd83lvgg0bv7ll.jpeg" alt="The Glowing Olive Lamp">
+                        </div>
+                    </a>
+                    <div class="nft-details">
+                        <h4>The Glowing Olive Lamp</h4>
+                        <p class="nft-author">DrMSI</p>
+                        <p>A lamp trapped within a bottle, reimagined in cubist style...</p>
+                    </div>
+                </div>
+
+                <div class="nft-card">
+                    <a href="https://www.binance.com/en/nft/item/89765363" target="_blank">
+                        <div class="nft-image">
+                            <img src="https://public.nftstatic.com/static/nft/res/nft-cex/S3/1712809896715_eewhbiv6rkt3ktqpzgi0o0bay0x7dmmw.jpeg" alt="Cubist Cat Chaos">
+                        </div>
+                    </a>
+                    <div class="nft-details">
+                        <h4>Cubist Cat Chaos</h4>
+                        <p class="nft-author">DrMSI</p>
+                        <p>Playful battle between two cats in cubist style...</p>
+                    </div>
+                </div>
+
+                <div class="nft-card">
+                    <a href="https://www.binance.com/en/nft/item/89765362" target="_blank">
+                        <div class="nft-image">
+                            <img src="https://public.nftstatic.com/static/nft/res/nft-cex/S3/1712809206435_s9yhlv1gne6qmc032pdvd4yzp13pm2b3.jpeg" alt="Majestic Whale">
+                        </div>
+                    </a>
+                    <div class="nft-details">
+                        <h4>Majestic Whale</h4>
+                        <p class="nft-author">DrMSI</p>
+                        <p>A majestic creature reimagined in fresh, fragmented perspective...</p>
+                    </div>
+                </div>
+
+                <div class="nft-card">
+                    <a href="https://www.binance.com/en/nft/item/89765358" target="_blank">
+                        <div class="nft-image">
+                            <img src="https://public.nftstatic.com/static/nft/res/nft-cex/S3/1712795351490_w8bdh29hw2aej4p79p7xzryab3fn6cau.jpeg" alt="Al-Aqsa Mosque">
+                        </div>
+                    </a>
+                    <div class="nft-details">
+                        <h4>Al-Aqsa Mosque</h4>
+                        <p class="nft-author">DrMSI</p>
+                        <p>Al-Aqsa Mosque in cubist style with olive trees...</p>
+                    </div>
+                </div>
+            </div>
+
+            <center>
+                <a href="https://www.binance.com/en/nft/my-nfts/collected/drmsi-962360a9eb4143c08addef6f254406db" class="view-all-btn" target="_blank">
+                    View All DrMSI Market Listing
+                </a>
+            </center>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
                     <h4>DRMSI</h4>
-                    <p style="color: var(--text-secondary);">Professional trading signals and market analysis for forex, crypto, and commodities traders.</p>
+                    <p style="color: var(--text-secondary);">Your all-in-one guide to success. Explore curated insights on investments, business ideas, health, and more. Empower yourself, transform your life.</p>
                     <div class="social-links" style="margin-top: 1rem;">
-                        <a href="https://twitter.com/drmsi" target="_blank" title="Twitter">𝕏</a>
-                        <a href="https://t.me/drmsi" target="_blank" title="Telegram">✈</a>
-                        <a href="https://youtube.com/@drmsi" target="_blank" title="YouTube">▶</a>
-                        <a href="https://instagram.com/drmsi" target="_blank" title="Instagram">📷</a>
+                        <a href="https://fb.com/drmsi86" target="_blank" title="Facebook">📘</a>
+                        <a href="https://x.com/drmsi86" target="_blank" title="Twitter">𝕏</a>
+                        <a href="https://www.linkedin.com/in/drmsi/" target="_blank" title="LinkedIn">💼</a>
+                        <a href="https://www.instagram.com/drmsi" target="_blank" title="Instagram">📷</a>
+                        <a href="https://www.youtube.com/@drmsi86" target="_blank" title="YouTube">▶</a>
                     </div>
                 </div>
 
@@ -806,7 +1163,7 @@
                     <h4>Legal</h4>
                     <ul class="footer-links">
                         <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="/policy.html">Privacy Policy</a></li>
                         <li><a href="#">Risk Disclosure</a></li>
                         <li><a href="#">Disclaimer</a></li>
                     </ul>

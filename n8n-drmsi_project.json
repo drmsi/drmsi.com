@@ -90,14 +90,14 @@
     },
     {
       "parameters": {
-        "jsCode": "const items = $input.all();\nconst allMarketData = $('Process Market Data').all().map(i => i.json);\nconst results = [];\n\nitems.forEach((item, index) => {\n    const aiContent = item.json.message?.content || item.json.choices?.[0]?.message?.content || '';\n    const marketData = allMarketData[index] || allMarketData[0]; // align by index, fallback to 0\n    \n    // Extract title\n    const titleMatch = aiContent.match(/<h1[^>]*>([^<]+)<\\/h1>/);\n    const title = titleMatch ? titleMatch[1].trim() : `${marketData.name} Analysis - ${marketData.date}`;\n    \n    // Extract meta description\n    const metaMatch = aiContent.match(/<p[^>]*>([^<]+)<\\/p>/);\n    const metaDescription = metaMatch \n        ? metaMatch[1].trim().substring(0, 160)\n        : `${marketData.name} price analysis: $${marketData.currentPrice}, ${marketData.trend} trend with ${marketData.changePercent}% change.`;\n\n    // Build slug\n    const slug = `${(marketData.symbol || 'unknown').toLowerCase()}-analysis-${marketData.date}`;\n\n  const categoryIcons = {\n    'Cryptocurrency': '₿',\n    'Forex': '💱',\n    'Stock': '📊',\n    'Commodity': '🥇'\n  };\n  const categoryIcon = categoryIcons[marketData.category] || '📈';\n  \n  const fullArticleHtml = `<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>${title} | DRMSI Trading Intelligence</title>\n    <meta name=\"description\" content=\"${metaDescription}\">\n    <meta name=\"keywords\" content=\"${marketData.name}, ${marketData.symbol}, ${marketData.category}, trading analysis\">\n    <meta name=\"author\" content=\"DRMSI Analysis Team\">\n    <link rel=\"canonical\" href=\"https://www.drmsi.com/articles/${slug}.html\">\n    \n    <meta property=\"og:type\" content=\"article\">\n    <meta property=\"og:url\" content=\"https://www.drmsi.com/articles/${slug}.html\">\n    <meta property=\"og:title\" content=\"${title}\">\n    <meta property=\"og:description\" content=\"${metaDescription}\">\n    <meta property=\"og:image\" content=\"https://www.drmsi.com/og-image.jpg\">\n    \n    <meta name=\"twitter:card\" content=\"summary_large_image\">\n    <meta name=\"twitter:title\" content=\"${title}\">\n    <meta name=\"twitter:description\" content=\"${metaDescription}\">\n    \n    <script type=\"application/ld+json\">\n    {\n      \"@context\": \"https://schema.org\",\n      \"@type\": \"Article\",\n      \"headline\": \"${title}\",\n      \"author\": {\"@type\": \"Organization\", \"name\": \"DRMSI\"},\n      \"publisher\": {\"@type\": \"Organization\", \"name\": \"DRMSI\"},\n      \"datePublished\": \"${marketData.timestamp}\"\n    }\n    </script>\n    \n    <style>\n        * { margin: 0; padding: 0; box-sizing: border-box; }\n        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f0f0f; color: #fff; line-height: 1.7; }\n        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }\n        .back-link { display: inline-block; color: #fbbf24; text-decoration: none; margin-bottom: 30px; }\n        .article-meta { display: flex; gap: 20px; margin-bottom: 20px; font-size: 14px; color: #a0a0a0; }\n        .price-badge { background: ${marketData.changePercent >= 0 ? '#10b981' : '#ef4444'}; color: white; padding: 4px 12px; border-radius: 4px; }\n        h1 { font-size: 2.5rem; margin-bottom: 20px; }\n        h2 { font-size: 1.8rem; margin: 40px 0 20px; color: #fbbf24; }\n        p { margin-bottom: 20px; color: #d0d0d0; }\n        .chart-container { margin: 40px 0; background: #1a1a1a; border-radius: 12px; overflow: hidden; }\n        .risk-disclaimer { background: #1f1f1f; border-left: 4px solid #ef4444; padding: 20px; margin: 40px 0; border-radius: 4px; font-size: 14px; }\n        @media (max-width: 768px) { h1 { font-size: 2rem; } .container { padding: 20px 15px; } }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <a href=\"/\" class=\"back-link\">← Back to DRMSI</a>\n        <article>\n            <div class=\"article-meta\">\n                <span>📅 ${new Date(marketData.timestamp).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>\n                <span>${categoryIcon} ${marketData.category}</span>\n                <span class=\"price-badge\">${marketData.trendEmoji} ${marketData.changePercent}%</span>\n            </div>\n            ${aiContent}\n            <div class=\"chart-container\">\n                <div style=\"height:500px;width:100%\">\n\n<!-- TradingView Widget BEGIN -->\n<div class=\"tradingview-widget-container\">\n  <div class=\"tradingview-widget-container__widget\"></div>\n  <div class=\"tradingview-widget-copyright\"><a href=\"https://www.tradingview.com/\" rel=\"noopener nofollow\" target=\"_blank\"><span class=\"blue-text\">Track all markets on TradingView</span></a></div>\n  <script type=\"text/javascript\" src=\"https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js\" async>\n  {\n  \"width\": \"auto\",\n  \"height\": \"600\",\n  \"symbol\": \"${marketData.tradingviewSymbol}\",\n  \"interval\": \"240\",\n  \"timezone\": \"Etc/UTC\",\n  \"theme\": \"dark\",\n  \"style\": \"1\",\n  \"locale\": \"en\",\n  \"enable_publishing\": false,\n  \"allow_symbol_change\": true,\n  \"calendar\": false,\n  \"studies\": [\n    \"STD;Bollinger_Bands\",\n    \"STD;MA%1Cross\",\n    \"STD;MA%Ribbon\"\n  ],\n  \"support_host\": \"https://www.tradingview.com\"\n}\n  </script>\n</div>\n<!-- TradingView Widget END -->\n\t\t\t\t\t\n                </div>\n            </div>\n            <div>${$input.all()[index].json.text}</div>\n        </article>\n    </div>\n</body>\n</html>`;\n  \n  const summary = metaDescription.substring(0, 150) + '...';\n  const shortArticleCard = `<article class=\"article-card\" data-date=\"${marketData.timestamp}\">\n    <div class=\"article-image\"><span style=\"font-size: 3rem;\">${categoryIcon}</span></div>\n    <div class=\"article-content\">\n        <div class=\"article-meta\">\n            <span>📅 ${new Date(marketData.timestamp).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>\n            <span>🏷️ ${marketData.category}</span>\n        </div>\n        <h3>${title}</h3>\n        <p>${summary}</p>\n        <div style=\"display: flex; justify-content: space-between; align-items: center; margin-top: 15px;\">\n            <span style=\"background: ${marketData.changePercent >= 0 ? '#10b981' : '#ef4444'}; color: white; padding: 4px 10px; border-radius: 4px; font-size: 13px;\">\n                ${marketData.trendEmoji} ${marketData.changePercent}%\n            </span>\n            <a href=\"/articles/${slug}.html\" style=\"color: #fbbf24; text-decoration: none; font-weight: 500;\">Read Analysis →</a>\n        </div>\n    </div>\n</article>`;\n  \n    // Push result\n    results.push({\n      title: title,\n      slug: slug,\n      fullArticleHtml: fullArticleHtml,\n      shortArticleCard: shortArticleCard,\n      symbol: marketData.symbol,\n      timestamp: marketData.date,\n      changePercent: marketData.changePercent\n    });\n});\n\nreturn results;\n\n"
+        "jsCode": "const items = $input.all();\nconst allMarketData = $('Process Market Data').all().map(i => i.json);\nconst results = [];\n\nitems.forEach((item, index) => {\n    const aiContent = item.json.message?.content || item.json.choices?.[0]?.message?.content || '';\n    const marketData = allMarketData[index] || allMarketData[0]; // align by index, fallback to 0\n    \n    // Extract title\n    const titleMatch = aiContent.match(/<h1[^>]*>([^<]+)<\\/h1>/);\n    const title = titleMatch ? titleMatch[1].trim() : `${marketData.name} Analysis - ${marketData.date}`;\n    \n    // Extract meta description\n    const metaMatch = aiContent.match(/<p[^>]*>([^<]+)<\\/p>/);\n    const metaDescription = metaMatch \n        ? metaMatch[1].trim().substring(0, 160)\n        : `${marketData.name} price analysis: $${marketData.currentPrice}, ${marketData.trend} trend with ${marketData.changePercent}% change.`;\n\n    // Build slug\n    const slug = `${(marketData.symbol || 'unknown').toLowerCase()}-analysis-${marketData.date}`;\n\n  const categoryIcons = {\n    'Cryptocurrency': '₿',\n    'Forex': '💱',\n    'Stock': '📊',\n    'Commodity': '🥇'\n  };\n  const categoryIcon = categoryIcons[marketData.category] || '📈';\n  \n  const fullArticleHtml = `<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>${title} | DRMSI Trading Intelligence</title>\n    <meta name=\"description\" content=\"${metaDescription}\">\n    <meta name=\"keywords\" content=\"${marketData.name}, ${marketData.symbol}, ${marketData.category}, trading analysis\">\n    <meta name=\"author\" content=\"DRMSI Analysis Team\">\n    <link rel=\"canonical\" href=\"https://www.drmsi.com/articles/${slug}.html\">\n    \n    <meta property=\"og:type\" content=\"article\">\n    <meta property=\"og:url\" content=\"https://www.drmsi.com/articles/${slug}.html\">\n    <meta property=\"og:title\" content=\"${title}\">\n    <meta property=\"og:description\" content=\"${metaDescription}\">\n    <meta property=\"og:image\" content=\"https://www.drmsi.com/og-image.jpg\">\n    \n    <meta name=\"twitter:card\" content=\"summary_large_image\">\n    <meta name=\"twitter:title\" content=\"${title}\">\n    <meta name=\"twitter:description\" content=\"${metaDescription}\">\n    \n    <script type=\"application/ld+json\">\n    {\n      \"@context\": \"https://schema.org\",\n      \"@type\": \"Article\",\n      \"headline\": \"${title}\",\n      \"author\": {\"@type\": \"Organization\", \"name\": \"DRMSI\"},\n      \"publisher\": {\"@type\": \"Organization\", \"name\": \"DRMSI\"},\n      \"datePublished\": \"${marketData.timestamp}\"\n    }\n    </script>\n    \n    <style>\n        * { margin: 0; padding: 0; box-sizing: border-box; }\n        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f0f0f; color: #fff; line-height: 1.7; }\n        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }\n        .back-link { display: inline-block; color: #fbbf24; text-decoration: none; margin-bottom: 30px; }\n        .article-meta { display: flex; gap: 20px; margin-bottom: 20px; font-size: 14px; color: #a0a0a0; }\n        .price-badge { background: ${marketData.changePercent >= 0 ? '#10b981' : '#ef4444'}; color: white; padding: 4px 12px; border-radius: 4px; }\n        h1 { font-size: 2.5rem; margin-bottom: 20px; }\n        h2 { font-size: 1.8rem; margin: 40px 0 20px; color: #fbbf24; }\n        p { margin-bottom: 20px; color: #d0d0d0; }\n        .chart-container { margin: 40px 0; background: #1a1a1a; border-radius: 12px; overflow: hidden; }\n        .risk-disclaimer { background: #1f1f1f; border-left: 4px solid #ef4444; padding: 20px; margin: 40px 0; border-radius: 4px; font-size: 14px; }\n        @media (max-width: 768px) { h1 { font-size: 2rem; } .container { padding: 20px 15px; } }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <a href=\"/\" class=\"back-link\">← Back to DRMSI</a>\n        <article>\n            <div class=\"article-meta\">\n                <span>📅 ${new Date(marketData.timestamp).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>\n                <span>${categoryIcon} ${marketData.category}</span>\n                <span class=\"price-badge\">${marketData.trendEmoji} ${marketData.changePercent}%</span>\n            </div>\n            ${aiContent}\n            <div class=\"chart-container\">\n                <div style=\"height:500px;width:100%\">\n\n<!-- TradingView Widget BEGIN -->\n<div class=\"tradingview-widget-container\">\n  <div class=\"tradingview-widget-container__widget\"></div>\n  <div class=\"tradingview-widget-copyright\"><a href=\"https://www.tradingview.com/\" rel=\"noopener nofollow\" target=\"_blank\"><span class=\"blue-text\">Track all markets on TradingView</span></a></div>\n  <script type=\"text/javascript\" src=\"https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js\" async>\n  {\n  \"width\": \"auto\",\n  \"height\": \"600\",\n  \"symbol\": \"${marketData.tradingviewSymbol}\",\n  \"interval\": \"240\",\n  \"timezone\": \"Etc/UTC\",\n  \"theme\": \"dark\",\n  \"style\": \"1\",\n  \"locale\": \"en\",\n  \"enable_publishing\": false,\n  \"allow_symbol_change\": true,\n  \"calendar\": false,\n  \"studies\": [\n    \"STD;Bollinger_Bands\",\n    \"STD;MA%1Cross\",\n    \"STD;MA%Ribbon\"\n  ],\n  \"support_host\": \"https://www.tradingview.com\"\n}\n  </script>\n</div>\n<!-- TradingView Widget END -->\n\t\t\t\t\t\n                </div>\n            </div>\n\n            ${$('Code ads').first().json.ads[0]}\n            <div>${$input.all()[index].json.text}</div>\n            ${$('Code ads').first().json.ads[1]}\n        </article>\n    </div>\n</body>\n</html>`;\n  \n  const summary = metaDescription.substring(0, 150) + '...';\n  const shortArticleCard = `<article class=\"article-card\" data-date=\"${marketData.timestamp}\">\n    <div class=\"article-image\"><span style=\"font-size: 3rem;\">${categoryIcon}</span></div>\n    <div class=\"article-content\">\n        <div class=\"article-meta\">\n            <span>📅 ${new Date(marketData.timestamp).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>\n            <span>🏷️ ${marketData.category}</span>\n        </div>\n        <h3>${title}</h3>\n        <p>${summary}</p>\n        <div style=\"display: flex; justify-content: space-between; align-items: center; margin-top: 15px;\">\n            <span style=\"background: ${marketData.changePercent >= 0 ? '#10b981' : '#ef4444'}; color: white; padding: 4px 10px; border-radius: 4px; font-size: 13px;\">\n                ${marketData.trendEmoji} ${marketData.changePercent}%\n            </span>\n            <a href=\"/articles/${slug}.html\" style=\"color: #fbbf24; text-decoration: none; font-weight: 500;\">Read Analysis →</a>\n        </div>\n    </div>\n</article>`;\n  \n    // Push result\n    results.push({\n      title: title,\n      slug: slug,\n      fullArticleHtml: fullArticleHtml,\n      shortArticleCard: shortArticleCard,\n      symbol: marketData.symbol,\n      timestamp: marketData.date,\n      changePercent: marketData.changePercent\n    });\n});\n\nreturn results;\n\n"
       },
       "name": "Format HTML",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -4336,
-        -96
+        -4064,
+        -112
       ],
       "id": "b8d14588-d411-4507-986f-c823921b77b0"
     },
@@ -108,12 +108,12 @@
         "owner": {
           "__rl": true,
           "value": "={{ $('Edit Fields').item.json.GITHUB_OWNER }}",
-          "mode": ""
+          "mode": "name"
         },
         "repository": {
           "__rl": true,
           "value": "={{ $('Edit Fields').item.json.GITHUB_REPO }}",
-          "mode": ""
+          "mode": "name"
         },
         "filePath": "=articles/{{ $json.slug }}.html",
         "fileContent": "={{ $json.fullArticleHtml }}",
@@ -123,7 +123,7 @@
       "type": "n8n-nodes-base.github",
       "typeVersion": 1,
       "position": [
-        -3424,
+        -3008,
         48
       ],
       "id": "ea343b13-2f80-4798-b741-750dff44325b",
@@ -160,7 +160,7 @@
       "type": "n8n-nodes-base.github",
       "typeVersion": 1,
       "position": [
-        -2880,
+        -2464,
         -128
       ],
       "id": "a0b7a041-e325-47c6-a146-a3fbcaf72fba",
@@ -180,7 +180,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -2272,
+        -1856,
         -144
       ],
       "id": "f7277fa1-3a73-4aec-b262-76049d30da52"
@@ -208,7 +208,7 @@
       "type": "n8n-nodes-base.github",
       "typeVersion": 1,
       "position": [
-        -1872,
+        -1456,
         -128
       ],
       "id": "d8ee5e12-3853-4de1-817a-f9474f05bd18",
@@ -245,7 +245,7 @@
             {
               "id": "6b2d350d-a230-451d-a72e-0a83f0808080",
               "name": "commandid",
-              "value": "={{ $('Telegram Trigger').item.json.message.text ? $('Telegram Trigger').item.json.message.text.toLowerCase() : 'start' }}\n",
+              "value": "={{ $('Telegram Trigger').isExecuted? $('Telegram Trigger').item.json.message.text.toLowerCase() : 'start'}}",
               "type": "string"
             }
           ]
@@ -268,7 +268,7 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        -3824,
+        -3408,
         -160
       ],
       "id": "325d8e6c-52f9-489d-a83d-17d14fca09fe",
@@ -280,7 +280,7 @@
       "name": "Replace Me",
       "typeVersion": 1,
       "position": [
-        -2976,
+        -2560,
         272
       ],
       "id": "ca519f8a-903f-4f8b-97f6-cd9a2ac2edf7"
@@ -293,7 +293,7 @@
       "name": "Create HTML document1",
       "type": "n8n-nodes-base.code",
       "position": [
-        -2048,
+        -1632,
         96
       ],
       "typeVersion": 2
@@ -306,7 +306,7 @@
       "name": "HTML1",
       "type": "n8n-nodes-base.html",
       "position": [
-        -1840,
+        -1424,
         96
       ],
       "typeVersion": 1.2
@@ -319,7 +319,7 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        -3264,
+        -2848,
         -144
       ],
       "id": "8a4ece71-b23a-4270-a88d-d5c3b2597d2d",
@@ -332,7 +332,7 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        -3136,
+        -2720,
         80
       ],
       "id": "9c876992-185d-4c4f-aa26-a2a619a78567",
@@ -346,7 +346,7 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        -2560,
+        -2144,
         -128
       ],
       "id": "e5883372-1376-4641-8dc7-103ee3d32572",
@@ -365,7 +365,7 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        -1568,
+        -1152,
         96
       ],
       "id": "8f423452-0639-48bb-a890-9e11a2183d03",
@@ -618,17 +618,27 @@
     },
     {
       "parameters": {
-        "amount": 1
+        "jsCode": "return [\n  {\n    json: {\n      ads: [\n        `<center>\n<a href=\"https://one.justmarkets.link/a/ffrhc0iuso\" referrerpolicy=\"no-referrer-when-downgrade\"><img src=\"../images/jm.jpg\" width=\"90%\" height=\"auto\" /></a>\n</center>`,\n        `<center>\n<a href=\"https://one.justmarkets.link/a/ffrhc0iuso\" referrerpolicy=\"no-referrer-when-downgrade\"><img src=\"../images/jmbanner.jpg\" width=\"90%\" height=\"auto\" /></a>\n</center>`\n      ]\n    }\n  }\n];\n"
       },
-      "type": "n8n-nodes-base.wait",
-      "typeVersion": 1.1,
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
       "position": [
-        -6688,
-        80
+        -6672,
+        64
       ],
-      "id": "a6ee1ebe-5f46-447e-b45e-c51ca4c4439c",
-      "name": "Wait3",
-      "webhookId": "532a3474-b054-47a7-8515-7c01cb30e911"
+      "id": "2a6708f3-803b-4a7a-8404-1ba86e2c4905",
+      "name": "Code ads"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -7504,
+        16
+      ],
+      "id": "531b24b0-a5ca-4993-b7ba-987a2b63d4ef",
+      "name": "When clicking ‘Execute workflow’"
     }
   ],
   "pinData": {},
@@ -741,7 +751,7 @@
       "main": [
         [
           {
-            "node": "Wait3",
+            "node": "Code ads",
             "type": "main",
             "index": 0
           }
@@ -921,7 +931,7 @@
         ]
       ]
     },
-    "Wait3": {
+    "Code ads": {
       "main": [
         [
           {
@@ -931,13 +941,24 @@
           }
         ]
       ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
-  "active": false,
+  "active": true,
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "8b3b1f94-dc48-47ff-86ae-8b61f3eb26bc",
+  "versionId": "67a12bb4-a7a2-4b66-82ec-0f7108f89433",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "d710a8d4701503eaaf605e53adbfea6a3b37e0a29e19418733c253f4e29a42e3"
