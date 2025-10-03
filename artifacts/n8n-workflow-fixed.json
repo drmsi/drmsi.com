@@ -1,0 +1,419 @@
+{
+  "name": "DRMSI Trading Analysis Automation",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 */4 * * *"
+            }
+          ]
+        }
+      },
+      "name": "Schedule Every 4 Hours",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -2016,
+        64
+      ],
+      "id": "ca609f30-e3e2-400b-813e-807adfdea0d5"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b145cac1-09b1-4e36-a0b7-adc571f77037",
+              "name": "GITHUB_OWNER",
+              "value": "drmsi",
+              "type": "string"
+            },
+            {
+              "id": "3538e94d-604e-46f4-8462-1ed69cdd1cc2",
+              "name": "GITHUB_REPO",
+              "value": "drmsi.com",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1776,
+        64
+      ],
+      "id": "4c5a8b69-e142-4389-a2a7-50d224a10c3d",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Symbol mapping for Yahoo Finance and TradingView\nconst symbolMapping = {\n  // Commodities\n  'XAUUSD': { yahoo: 'GC=F', tradingview: 'OANDA:XAUUSD', name: 'Gold', category: 'Commodity' },\n  'XAGUSD': { yahoo: 'SI=F', tradingview: 'OANDA:XAGUSD', name: 'Silver', category: 'Commodity' },\n  \n  // Cryptocurrencies\n  'BTCUSD': { yahoo: 'BTC-USD', tradingview: 'BINANCE:BTCUSDT', name: 'Bitcoin', category: 'Cryptocurrency' },\n  'ETHUSD': { yahoo: 'ETH-USD', tradingview: 'BINANCE:ETHUSDT', name: 'Ethereum', category: 'Cryptocurrency' },\n  'XRPUSD': { yahoo: 'XRP-USD', tradingview: 'BINANCE:XRPUSDT', name: 'Ripple', category: 'Cryptocurrency' },\n  'XLMUSD': { yahoo: 'XLM-USD', tradingview: 'BINANCE:XLMUSDT', name: 'Stellar', category: 'Cryptocurrency' },\n  'SOLUSD': { yahoo: 'SOL-USD', tradingview: 'BINANCE:SOLUSDT', name: 'Solana', category: 'Cryptocurrency' },\n  \n  // Forex Pairs\n  'EURUSD': { yahoo: 'EURUSD=X', tradingview: 'FX:EURUSD', name: 'EUR/USD', category: 'Forex' },\n  'GBPUSD': { yahoo: 'GBPUSD=X', tradingview: 'FX:GBPUSD', name: 'GBP/USD', category: 'Forex' },\n  'USDJPY': { yahoo: 'USDJPY=X', tradingview: 'FX:USDJPY', name: 'USD/JPY', category: 'Forex' },\n  'AUDUSD': { yahoo: 'AUDUSD=X', tradingview: 'FX:AUDUSD', name: 'AUD/USD', category: 'Forex' },\n  'USDCAD': { yahoo: 'USDCAD=X', tradingview: 'FX:USDCAD', name: 'USD/CAD', category: 'Forex' },\n  \n  // FANG Stocks\n  'MSFT': { yahoo: 'MSFT', tradingview: 'NASDAQ:MSFT', name: 'Microsoft', category: 'Stock' },\n  'AAPL': { yahoo: 'AAPL', tradingview: 'NASDAQ:AAPL', name: 'Apple', category: 'Stock' },\n  'AMZN': { yahoo: 'AMZN', tradingview: 'NASDAQ:AMZN', name: 'Amazon', category: 'Stock' },\n  'GOOGL': { yahoo: 'GOOGL', tradingview: 'NASDAQ:GOOGL', name: 'Google', category: 'Stock' },\n  'TSLA': { yahoo: 'TSLA', tradingview: 'NASDAQ:TSLA', name: 'Tesla', category: 'Stock' }\n};\n\n// Time-based symbol selection\nconst hour = new Date().getUTCHours();\nlet selectedSymbols = [];\n\nif (hour >= 0 && hour < 6) {\n  selectedSymbols = ['BTCUSD', 'ETHUSD', 'SOLUSD', 'XRPUSD'];\n} else if (hour >= 6 && hour < 12) {\n  selectedSymbols = ['EURUSD', 'GBPUSD', 'XAUUSD', 'USDJPY'];\n} else if (hour >= 12 && hour < 18) {\n  selectedSymbols = ['AAPL', 'MSFT', 'BTCUSD', 'ETHUSD'];\n} else {\n  selectedSymbols = ['XAUUSD', 'XAGUSD', 'AMZN', 'SOLUSD'];\n}\n\n// Create output array\nreturn selectedSymbols.map(symbol => ({\n  symbol: symbol,\n  yahooSymbol: symbolMapping[symbol].yahoo,\n  tradingviewSymbol: symbolMapping[symbol].tradingview,\n  name: symbolMapping[symbol].name,\n  category: symbolMapping[symbol].category,\n  date: new Date().toISOString().split('T')[0],\n  timestamp: new Date().toISOString()\n}));"
+      },
+      "name": "Smart Symbol Selection",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1520,
+        64
+      ],
+      "id": "57603e2e-9a22-4769-be0a-c7127d6a6c48"
+    },
+    {
+      "parameters": {
+        "url": "=https://query1.finance.yahoo.com/v8/finance/chart/{{ $json.yahooSymbol }}?range=5d&interval=1d",
+        "options": {}
+      },
+      "name": "Fetch Yahoo Finance",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -1232,
+        64
+      ],
+      "id": "60be84a0-55be-46b9-91ad-ccad53b21321",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000
+    },
+    {
+      "parameters": {
+        "jsCode": "// Process Yahoo Finance data\nconst inputData = $input.all();\nconst results = [];\n\nfor (const item of inputData) {\n  const chart = item.json.chart;\n  \n  if (!chart || !chart.result || !chart.result[0]) {\n    continue;\n  }\n  \n  const result = chart.result[0];\n  const meta = result.meta;\n  const quotes = result.indicators.quote[0];\n  \n  const currentPrice = meta.regularMarketPrice;\n  const previousClose = meta.previousClose;\n  const change = currentPrice - previousClose;\n  const changePercent = ((change / previousClose) * 100).toFixed(2);\n  \n  const highs = quotes.high.filter(v => v !== null);\n  const lows = quotes.low.filter(v => v !== null);\n  \n  const fiveDayHigh = Math.max(...highs);\n  const fiveDayLow = Math.min(...lows);\n  \n  const trend = changePercent > 0 ? 'bullish' : 'bearish';\n  const trendEmoji = changePercent > 0 ? '📈' : '📉';\n  \n  let priceDecimals = 2;\n  const category = item.json.category;\n  if (category === 'Cryptocurrency') {\n    priceDecimals = currentPrice > 1000 ? 0 : currentPrice > 1 ? 2 : 6;\n  }\n  \n  results.push({\n    symbol: item.json.symbol,\n    yahooSymbol: item.json.yahooSymbol,\n    tradingviewSymbol: item.json.tradingviewSymbol,\n    name: item.json.name,\n    category: category,\n    currentPrice: typeof currentPrice === \"number\" ? currentPrice.toFixed(priceDecimals) : null,\n    previousClose: typeof previousClose === \"number\" ? previousClose.toFixed(priceDecimals) : null,\n    change: typeof change === \"number\" ? change.toFixed(priceDecimals) : null,\n    changePercent: changePercent,\n    fiveDayHigh: typeof fiveDayHigh === \"number\" ? fiveDayHigh.toFixed(priceDecimals) : null,\n    fiveDayLow: typeof fiveDayLow === \"number\" ? fiveDayLow.toFixed(priceDecimals) : null,\n    support: typeof fiveDayLow === \"number\" ? fiveDayLow.toFixed(priceDecimals) : null,\n    resistance: typeof fiveDayHigh === \"number\" ? fiveDayHigh.toFixed(priceDecimals) : null,\n    trend: trend,\n    trendEmoji: trendEmoji,\n    timestamp: new Date().toISOString(),\n    date: new Date().toISOString().split('T')[0]\n  });\n}\n\nreturn results;"
+      },
+      "name": "Process Market Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -976,
+        64
+      ],
+      "id": "ee48a2f4-a865-46b1-b260-11f99ed6e747"
+    },
+    {
+      "parameters": {
+        "prompt": "={\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a professional trading analyst writing for DRMSI. Output ONLY clean HTML content (no DOCTYPE, html, head, or body tags). Use semantic HTML5 tags. The article must include:\\n\\n1. H1 title (60–70 characters)\\n2. Introduction (1–2 paragraphs)\\n3. Market Overview section with <h2>\\n4. Technical Analysis section with <h2>\\n5. Trading Outlook section with <h2>\\n6. Risk disclaimer in <div class=\\\"risk-disclaimer\\\">\\n\\nLength: 400–500 words. Tone: professional, analytical.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"Create a comprehensive trading analysis article for {{ $json.name }}.\\n\\nDetails:\\n- Symbol: {{ $json.symbol }}\\n- Category: {{ $json.category }}\\n- Current Price: ${{ $json.currentPrice }}\\n- 24h Change: {{ $json.changePercent }}%\\n- Trend: {{ $json.trend }}\\n- 5-Day High: ${{ $json.fiveDayHigh }}\\n- 5-Day Low: ${{ $json.fiveDayLow }}\\n- Support: ${{ $json.support }}\\n- Resistance: ${{ $json.resistance }}\\n\\nInclude technical outlook, support/resistance levels, and a short-term trading forecast.\"\n    }\n  ]\n}",
+        "options": {
+          "maxTokens": 1200,
+          "topP": 0.7
+        }
+      },
+      "name": "Generate Article with AI",
+      "type": "n8n-nodes-base.openAi",
+      "position": [
+        -528,
+        -16
+      ],
+      "id": "95843600-f172-49a7-8ebf-a564578ddd8d",
+      "typeVersion": 1.1,
+      "credentials": {
+        "openAiApi": {
+          "id": "9X9QZJ0g1WvPBvQ3",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconst allMarketData = $('Process Market Data').all().map(i => i.json);\nconst results = [];\n\nitems.forEach((item, index) => {\n    const aiContent = item.json.message?.content || item.json.choices?.[0]?.message?.content || '';\n    const marketData = allMarketData[index] || allMarketData[0];\n    \n    // Extract title\n    const titleMatch = aiContent.match(/<h1[^>]*>([^<]+)<\\/h1>/);\n    const title = titleMatch ? titleMatch[1].trim() : `${marketData.name} Analysis - ${marketData.date}`;\n    \n    // Extract meta description\n    const metaMatch = aiContent.match(/<p[^>]*>([^<]+)<\\/p>/);\n    const metaDescription = metaMatch \n        ? metaMatch[1].trim().substring(0, 160)\n        : `${marketData.name} price analysis: $${marketData.currentPrice}, ${marketData.trend} trend with ${marketData.changePercent}% change.`;\n\n    // Build slug\n    const slug = `${(marketData.symbol || 'unknown').toLowerCase()}-analysis-${marketData.date}`;\n\n  const categoryIcons = {\n    'Cryptocurrency': '₿',\n    'Forex': '💱',\n    'Stock': '📊',\n    'Commodity': '🥇'\n  };\n  const categoryIcon = categoryIcons[marketData.category] || '📈';\n  \n  const fullArticleHtml = `<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>${title} | DRMSI Trading Intelligence</title>\n    <meta name=\"description\" content=\"${metaDescription}\">\n    <meta name=\"keywords\" content=\"${marketData.name}, ${marketData.symbol}, ${marketData.category}, trading analysis\">\n    <meta name=\"author\" content=\"DRMSI Analysis Team\">\n    <link rel=\"canonical\" href=\"https://drmsi.com/articles/${slug}.html\">\n    \n    <meta property=\"og:type\" content=\"article\">\n    <meta property=\"og:url\" content=\"https://drmsi.com/articles/${slug}.html\">\n    <meta property=\"og:title\" content=\"${title}\">\n    <meta property=\"og:description\" content=\"${metaDescription}\">\n    <meta property=\"og:image\" content=\"https://drmsi.com/og-image.jpg\">\n    \n    <meta name=\"twitter:card\" content=\"summary_large_image\">\n    <meta name=\"twitter:title\" content=\"${title}\">\n    <meta name=\"twitter:description\" content=\"${metaDescription}\">\n    \n    <script type=\"application/ld+json\">\n    {\n      \"@context\": \"https://schema.org\",\n      \"@type\": \"Article\",\n      \"headline\": \"${title}\",\n      \"author\": {\"@type\": \"Organization\", \"name\": \"DRMSI\"},\n      \"publisher\": {\"@type\": \"Organization\", \"name\": \"DRMSI\"},\n      \"datePublished\": \"${marketData.timestamp}\"\n    }\n    </script>\n    \n    <style>\n        * { margin: 0; padding: 0; box-sizing: border-box; }\n        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f0f0f; color: #fff; line-height: 1.7; }\n        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }\n        .back-link { display: inline-block; color: #fbbf24; text-decoration: none; margin-bottom: 30px; }\n        .article-meta { display: flex; gap: 20px; margin-bottom: 20px; font-size: 14px; color: #a0a0a0; }\n        .price-badge { background: ${marketData.changePercent >= 0 ? '#10b981' : '#ef4444'}; color: white; padding: 4px 12px; border-radius: 4px; }\n        h1 { font-size: 2.5rem; margin-bottom: 20px; }\n        h2 { font-size: 1.8rem; margin: 40px 0 20px; color: #fbbf24; }\n        p { margin-bottom: 20px; color: #d0d0d0; }\n        .chart-container { margin: 40px 0; background: #1a1a1a; border-radius: 12px; overflow: hidden; }\n        .risk-disclaimer { background: #1f1f1f; border-left: 4px solid #ef4444; padding: 20px; margin: 40px 0; border-radius: 4px; font-size: 14px; }\n        @media (max-width: 768px) { h1 { font-size: 2rem; } .container { padding: 20px 15px; } }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <a href=\"/\" class=\"back-link\">← Back to DRMSI</a>\n        <article>\n            <div class=\"article-meta\">\n                <span>📅 ${new Date(marketData.timestamp).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>\n                <span>${categoryIcon} ${marketData.category}</span>\n                <span class=\"price-badge\">${marketData.trendEmoji} ${marketData.changePercent}%</span>\n            </div>\n            ${aiContent}\n            <div class=\"chart-container\">\n                <div style=\"height:500px;width:100%\">\n                    <div id=\"tradingview_${marketData.symbol}\" style=\"height:100%;width:100%\"></div>\n                    <script src=\"https://s3.tradingview.com/tv.js\"></script>\n                    <script>\n                    new TradingView.widget({\n                        width: \"100%\",\n                        height: \"100%\",\n                        symbol: \"${marketData.tradingviewSymbol}\",\n                        interval: \"240\",\n                        timezone: \"Etc/UTC\",\n                        theme: \"dark\",\n                        style: \"1\",\n                        locale: \"en\",\n                        toolbar_bg: \"#1a1a1a\",\n                        enable_publishing: false,\n                        container_id: \"tradingview_${marketData.symbol}\"\n                    });\n                    </script>\n                </div>\n            </div>\n        </article>\n    </div>\n</body>\n</html>`;\n  \n  const summary = metaDescription.substring(0, 120);\n  const shortArticleCard = `<article class=\"article-card\" data-date=\"${marketData.timestamp}\">\n                    <div class=\"article-image\">\n                        <span>${categoryIcon}</span>\n                    </div>\n                    <div class=\"article-content\">\n                        <div class=\"article-meta\">\n                            <span>📅 ${new Date(marketData.timestamp).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>\n                            <span>🏷️ ${marketData.category}</span>\n                        </div>\n                        <h3 class=\"article-title\">${title}</h3>\n                        <p class=\"article-excerpt\">${summary}...</p>\n                        <a href=\"articles/${slug}.html\" class=\"article-link\">Read Analysis →</a>\n                    </div>\n                </article>`;\n  \n    results.push({\n      title: title,\n      slug: slug,\n      fullArticleHtml: fullArticleHtml,\n      shortArticleCard: shortArticleCard,\n      symbol: marketData.symbol,\n      category: marketData.category,\n      timestamp: marketData.timestamp,\n      date: marketData.date,\n      changePercent: marketData.changePercent,\n      currentPrice: marketData.currentPrice\n    });\n});\n\nreturn results;"
+      },
+      "name": "Format HTML",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        96,
+        -32
+      ],
+      "id": "6e3d0a5a-c060-41fd-85fb-1ccd52070b83"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "file",
+        "owner": {
+          "__rl": true,
+          "value": "={{ $('Edit Fields').item.json.GITHUB_OWNER }}",
+          "mode": "name"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "={{ $('Edit Fields').item.json.GITHUB_REPO }}",
+          "mode": "name"
+        },
+        "filePath": "=articles/{{ $json.slug }}.html",
+        "fileContent": "={{ $json.fullArticleHtml }}",
+        "commitMessage": "=Add article: {{ $json.title }}"
+      },
+      "name": "Push Article",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        592,
+        -16
+      ],
+      "id": "d39b63ee-b46b-45ef-b983-36839a1b762e",
+      "credentials": {
+        "githubOAuth2Api": {
+          "id": "ed3t7HpRj8uarpvN",
+          "name": "GitHub account outh2"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "file",
+        "operation": "get",
+        "owner": {
+          "__rl": true,
+          "value": "={{ $('Edit Fields').item.json.GITHUB_OWNER }}",
+          "mode": "name"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "={{ $('Edit Fields').item.json.GITHUB_REPO }}",
+          "mode": "name"
+        },
+        "filePath": "index.html",
+        "asBinaryProperty": false,
+        "additionalParameters": {}
+      },
+      "name": "Get index.html",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        1040,
+        -16
+      ],
+      "id": "be71b6cf-39b8-4e87-a825-0a0adbed730d",
+      "credentials": {
+        "githubOAuth2Api": {
+          "id": "ed3t7HpRj8uarpvN",
+          "name": "GitHub account outh2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combinationMode": "multiplex",
+        "options": {}
+      },
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        1328,
+        -16
+      ],
+      "id": "merge-articles-index"
+    },
+    {
+      "parameters": {
+        "jsCode": "// ===================================================================\n// n8n Code Node: Merge Article Cards into index.html\n// ===================================================================\n\nconst allItems = $input.all();\n\n// Find index.html data from GitHub\nconst indexItem = allItems.find(item => \n  item.json && item.json.content && item.json.sha\n);\n\nif (!indexItem) {\n  throw new Error('index.html data not found. Check connections.');\n}\n\n// Decode GitHub base64 content\nconst currentContent = Buffer.from(indexItem.json.content, 'base64').toString('utf-8');\nconst sha = indexItem.json.sha;\n\n// Get all article cards from Format HTML node\nconst articleItems = allItems.filter(item => \n  item.json && item.json.shortArticleCard\n);\n\nconsole.log(`Processing ${articleItems.length} new article cards`);\n\nif (articleItems.length === 0) {\n  return [{\n    json: {\n      content: Buffer.from(currentContent).toString('base64'),\n      sha: sha,\n      message: 'No new articles to add'\n    }\n  }];\n}\n\n// Extract new cards\nconst newCards = articleItems.map(item => item.json.shortArticleCard);\n\n// Find the articles grid in HTML\nconst gridStartMarker = '<div class=\"articles-grid\" id=\"articlesGrid\">';\nconst gridEndMarker = '</div><!-- articlesGrid -->';\n\nconst gridStart = currentContent.indexOf(gridStartMarker);\nconst gridEnd = currentContent.indexOf(gridEndMarker);\n\nif (gridStart === -1 || gridEnd === -1) {\n  throw new Error('Cannot find articles grid in index.html');\n}\n\nconst gridOpenEnd = currentContent.indexOf('>', gridStart) + 1;\n\n// Extract existing articles\nconst existingContent = currentContent.substring(gridOpenEnd, gridEnd);\nconst articleCardRegex = /<article class=\"article-card\"[\\s\\S]*?<\\/article>/g;\nconst existingCards = existingContent.match(articleCardRegex) || [];\n\nconsole.log(`Found ${existingCards.length} existing cards`);\n\n// Keep max 6 cards total (new ones first)\nconst maxCards = 6;\nconst cardsToKeep = existingCards.slice(0, Math.max(0, maxCards - newCards.length));\nconst allCards = [...newCards, ...cardsToKeep];\n\nconsole.log(`Final: ${allCards.length} cards (${newCards.length} new + ${cardsToKeep.length} kept)`);\n\n// Build new grid content with proper indentation\nconst newGridContent = '\\n        ' + allCards.join('\\n        ') + '\\n      ';\n\n// Reconstruct HTML\nconst beforeGrid = currentContent.substring(0, gridOpenEnd);\nconst afterGrid = currentContent.substring(gridEnd);\nconst updatedHTML = beforeGrid + newGridContent + afterGrid;\n\n// Encode to base64 for GitHub\nconst base64Content = Buffer.from(updatedHTML).toString('base64');\n\nreturn [{\n  json: {\n    content: base64Content,\n    sha: sha,\n    message: `📊 Updated ${newCards.length} article${newCards.length !== 1 ? 's' : ''}: ${articleItems.map(a => a.json.title).join(', ')}`,\n    articleCount: allCards.length,\n    newCount: newCards.length,\n    keptCount: cardsToKeep.length\n  }\n}];"
+      },
+      "name": "Update index",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1616,
+        -16
+      ],
+      "id": "59956dd8-010b-4aa7-a010-3f91a8beb19d"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "file",
+        "operation": "edit",
+        "owner": {
+          "__rl": true,
+          "value": "={{ $('Edit Fields').first().json.GITHUB_OWNER }}",
+          "mode": "name"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "={{ $('Edit Fields').first().json.GITHUB_REPO }}",
+          "mode": "name"
+        },
+        "filePath": "index.html",
+        "fileContent": "={{ $json.content }}",
+        "commitMessage": "={{ $json.message }}",
+        "additionalParameters": {
+          "sha": "={{ $json.sha }}"
+        }
+      },
+      "name": "Push index",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        1904,
+        -16
+      ],
+      "id": "21f03b1f-424f-4889-8a3f-dad2497d1bef",
+      "credentials": {
+        "githubOAuth2Api": {
+          "id": "ed3t7HpRj8uarpvN",
+          "name": "GitHub account outh2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Every 4 Hours": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Smart Symbol Selection",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Smart Symbol Selection": {
+      "main": [
+        [
+          {
+            "node": "Fetch Yahoo Finance",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Yahoo Finance": {
+      "main": [
+        [
+          {
+            "node": "Process Market Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Market Data": {
+      "main": [
+        [
+          {
+            "node": "Generate Article with AI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Article with AI": {
+      "main": [
+        [
+          {
+            "node": "Format HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format HTML": {
+      "main": [
+        [
+          {
+            "node": "Push Article",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Push Article": {
+      "main": [
+        [
+          {
+            "node": "Get index.html",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get index.html": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Update index",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update index": {
+      "main": [
+        [
+          {
+            "node": "Push index",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "drmsi-workflow-v2-corrected",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d710a8d4701503eaaf605e53adbfea6a3b37e0a29e19418733c253f4e29a42e3"
+  },
+  "id": "drmsi-trading-automation",
+  "tags": [
+    {
+      "createdAt": "2025-10-02T16:00:00.000Z",
+      "updatedAt": "2025-10-02T16:00:00.000Z",
+      "id": "tag1",
+      "name": "trading"
+    },
+    {
+      "createdAt": "2025-10-02T16:00:00.000Z",
+      "updatedAt": "2025-10-02T16:00:00.000Z",
+      "id": "tag2",
+      "name": "automation"
+    }
+  ]
+}
