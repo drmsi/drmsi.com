@@ -541,7 +541,36 @@
             <!-- TradingView Widget BEGIN -->
             <div class="tradingview-widget">
                 <div class="tradingview-widget-container" style="height:400px">
-                    <div id="tradingview_gold_chart"></div>
+
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+  {
+  "width": "auto",
+  "height": "600",
+  "symbol": "${marketData.tradingviewSymbol}",
+  "interval": "240",
+  "timezone": "Etc/UTC",
+  "theme": "dark",
+  "style": "1",
+  "locale": "en",
+  "enable_publishing": false,
+  "allow_symbol_change": true,
+  "calendar": false,
+  "studies": [
+    "STD;Bollinger_Bands",
+    "STD;MA%1Cross",
+    "STD;MA%Ribbon"
+  ],
+  "support_host": "https://www.tradingview.com"
+}
+  </script>
+</div>
+<!-- TradingView Widget END -->
+				
+                    
                 </div>
             </div>
             <!-- TradingView Widget END -->
@@ -765,27 +794,7 @@
         </div>
     </footer>
 
-    <!-- TradingView Widget Script -->
-    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-    <script type="text/javascript">
-        // Initialize TradingView Gold Chart
-        new TradingView.widget({
-            "autosize": true,
-            "symbol": "OANDA:XAUUSD",
-            "interval": "D",
-            "timezone": "Etc/UTC",
-            "theme": "dark",
-            "style": "1",
-            "locale": "en",
-            "toolbar_bg": "#0f0f0f",
-            "enable_publishing": false,
-            "allow_symbol_change": true,
-            "container_id": "tradingview_gold_chart",
-            "height": 400
-        });
-    </script>
 
-    <!-- Mobile Menu Toggle -->
     <script>
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.getElementById('navLinks');
