@@ -7,6 +7,20 @@
     <title>DRMSI - Professional Trading Signals & Market Analysis</title>
     <meta name="description" content="Professional forex and crypto trading signals, real-time market analysis, and educational resources for traders.">
 
+    <!-- Google Consent Mode -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+
+      // Default consent to denied for all regions
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied'
+      });
+    </script>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-177577169-1"></script>
     <script>
@@ -17,6 +31,9 @@
     </script>
 
     <script data-ad-client="ca-pub-8234881172646345" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+    <!-- Cookie Consent CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
 
     <style>
         * {
@@ -1233,6 +1250,63 @@
         });
     </script>
 
-   
+    <!-- Cookie Consent Script -->
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+    <script>
+    window.addEventListener('load', function() {
+      window.cookieconsent.initialise({
+        "palette": {
+          "popup": {
+            "background": "#1a1a1a",
+            "text": "#ffffff"
+          },
+          "button": {
+            "background": "#fbbf24",
+            "text": "#0f0f0f"
+          }
+        },
+        "type": "opt-in",
+        "content": {
+          "message": "We use cookies and similar technologies to provide the best experience on our website, including personalized ads and analytics.",
+          "dismiss": "Decline",
+          "allow": "Accept All",
+          "link": "Learn more",
+          "href": "/policy.html",
+          "policy": "Cookie Policy"
+        },
+        onStatusChange: function(status) {
+          if (this.hasConsented()) {
+            // User accepted - grant consent
+            gtag('consent', 'update', {
+              'ad_storage': 'granted',
+              'ad_user_data': 'granted',
+              'ad_personalization': 'granted',
+              'analytics_storage': 'granted'
+            });
+          } else {
+            // User declined - keep consent denied
+            gtag('consent', 'update', {
+              'ad_storage': 'denied',
+              'ad_user_data': 'denied',
+              'ad_personalization': 'denied',
+              'analytics_storage': 'denied'
+            });
+          }
+        },
+        onInitialise: function(status) {
+          if (this.hasConsented()) {
+            // User previously accepted
+            gtag('consent', 'update', {
+              'ad_storage': 'granted',
+              'ad_user_data': 'granted',
+              'ad_personalization': 'granted',
+              'analytics_storage': 'granted'
+            });
+          }
+        }
+      });
+    });
+    </script>
+
 </body>
 </html>
