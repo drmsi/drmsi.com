@@ -1,0 +1,29 @@
+ignore/
+
+# Secrets & credentials
+.env
+.env.*
+.env.local
+.env.production
+*.key
+*.pem
+*.p12
+*.pfx
+*.jks
+credentials.json
+serviceAccountKey.json
+*_credentials.env
+*.secret
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Claude
+.claude/

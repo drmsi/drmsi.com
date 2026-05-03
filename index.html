@@ -1,0 +1,1397 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRMSI - Professional Trading Signals & Market Analysis</title>
+    <meta name="description" content="Professional forex and crypto trading signals, real-time market analysis, and educational resources for traders.">
+
+    <!-- Google Consent Mode -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+
+      // Default consent to denied for all regions
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied'
+      });
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-177577169-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-177577169-1');
+    </script>
+
+    <script data-ad-client="ca-pub-8234881172646345" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+    <!-- Cookie Consent CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0f0f0f;
+            --bg-secondary: #1a1a1a;
+            --bg-card: #1f1f1f;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent-gold: #fbbf24;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --border-color: #2a2a2a;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-gold);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-gold), #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-gold);
+            color: var(--bg-primary);
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.3);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section */
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+        }
+
+        /* Live Market Tickers */
+        .market-tickers {
+            background: var(--bg-secondary);
+            padding: 2rem 0;
+            overflow: hidden;
+        }
+
+        .ticker-container {
+            display: flex;
+            gap: 2rem;
+            animation: scroll 30s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--bg-card);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            white-space: nowrap;
+            min-width: 200px;
+        }
+
+        .ticker-symbol {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .ticker-price {
+            color: var(--accent-gold);
+        }
+
+        .ticker-change.positive {
+            color: var(--accent-green);
+        }
+
+        .ticker-change.negative {
+            color: var(--accent-red);
+        }
+
+        /* TradingView Widget Container */
+        .tradingview-widget {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 2rem 0;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 4rem 0;
+        }
+
+        .app-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0 3rem;
+        }
+
+        .app-links img {
+            width: 125px;
+            height: 125px;
+            transition: transform 0.3s;
+        }
+
+        .app-links img:hover {
+            transform: scale(1.05);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-box {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.1);
+        }
+
+        .service-box h3 {
+            color: var(--accent-gold);
+            margin: 1rem 0;
+        }
+
+        /* Gold Chart Section */
+        .gold-chart-section {
+            background: var(--bg-secondary);
+            padding: 3rem 0;
+        }
+
+        /* Articles Grid */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .article-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.1);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #1f1f1f, #2a2a2a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+        }
+
+        .article-content {
+            padding: 1.5rem;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .article-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .article-excerpt {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .article-link {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .article-link:hover {
+            text-decoration: underline;
+        }
+
+        .load-more-btn {
+            display: block;
+            margin: 3rem auto 0;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            padding: 1rem 3rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s, border-color 0.3s;
+        }
+
+        .load-more-btn:hover {
+            background: var(--bg-secondary);
+            border-color: var(--accent-gold);
+        }
+
+        /* Education Section */
+        .education-section {
+            background: var(--bg-secondary);
+        }
+
+        .education-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .education-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .education-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-gold);
+        }
+
+        .resource-list {
+            list-style: none;
+        }
+
+        .resource-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .resource-list li:last-child {
+            border-bottom: none;
+        }
+
+        .resource-list a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .resource-list a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* About Us Section */
+        .about-section {
+            padding: 4rem 0;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+
+        .about-text h3 {
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* NFT Section */
+        .nft-section {
+            background: var(--bg-secondary);
+            padding: 4rem 0;
+        }
+
+        .nft-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .nft-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .nft-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.2);
+        }
+
+        .nft-image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .nft-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .nft-details {
+            padding: 1.5rem;
+        }
+
+        .nft-details h4 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .nft-details p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .nft-author {
+            color: var(--accent-gold);
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
+        .view-all-btn {
+            display: inline-block;
+            background: var(--accent-gold);
+            color: var(--bg-primary);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 2rem 0;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .view-all-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--bg-card);
+            border-radius: 50%;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-gold);
+            color: var(--bg-primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--bg-primary);
+                border-bottom: 1px solid var(--border-color);
+                padding: 1rem 2rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .articles-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .articles-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="/" class="logo">DRMSI</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#analysis">Analysis</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#nft">NFT Market</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Professional Trading Intelligence</h1>
+        <p style="font-style: italic; color: var(--accent-gold); margin-bottom: 1rem;">Empower yourself with knowledge, transform your life with action.</p>
+        <p>Real-time market analysis, trading signals, and educational resources for serious traders</p>
+        <a href="#analysis" class="cta-button">Explore Market Analysis</a>
+    </section>
+
+    <!-- Live Market Tickers -->
+    <div class="market-tickers">
+        <div class="ticker-container">
+            <!-- Duplicate for infinite scroll effect -->
+            <div class="ticker-item">
+                <span class="ticker-symbol">EUR/USD</span>
+                <span class="ticker-price">1.0852</span>
+                <span class="ticker-change positive">+0.45%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">GBP/USD</span>
+                <span class="ticker-price">1.2634</span>
+                <span class="ticker-change negative">-0.23%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">BTC/USD</span>
+                <span class="ticker-price">48,523</span>
+                <span class="ticker-change positive">+2.34%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">XAU/USD</span>
+                <span class="ticker-price">2,042</span>
+                <span class="ticker-change positive">+0.87%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">ETH/USD</span>
+                <span class="ticker-price">2,634</span>
+                <span class="ticker-change positive">+3.12%</span>
+            </div>
+            <!-- Duplicate items for seamless loop -->
+            <div class="ticker-item">
+                <span class="ticker-symbol">EUR/USD</span>
+                <span class="ticker-price">1.0852</span>
+                <span class="ticker-change positive">+0.45%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">GBP/USD</span>
+                <span class="ticker-price">1.2634</span>
+                <span class="ticker-change negative">-0.23%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">BTC/USD</span>
+                <span class="ticker-price">48,523</span>
+                <span class="ticker-change positive">+2.34%</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <h2 class="section-title">Our <span style="color: var(--accent-gold);">Services</span></h2>
+            <p style="text-align: center; color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+                Master your finances, explore business ideas, prioritize your health - all with DrMSI
+            </p>
+
+            <div class="app-links">
+                <a href="https://apps.apple.com/tt/developer/mohammad-ibreighith/id911144500" target="_blank">
+                    <img src="images/applestore.png" alt="Download on App Store">
+                </a>
+                <a href="https://play.google.com/store/apps/dev?id=7509485406304298835" target="_blank">
+                    <img src="images/googleplay.png" alt="Get it on Google Play">
+                </a>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-box">
+                    <h3>Trading Technical Analysis</h3>
+                    <p>Level up your trading: DrMSI equips you with powerful technical analysis tools.</p>
+                    <p>Trade smarter, not harder: DrMSI simplifies technical analysis for profitable opportunities.</p>
+                </div>
+                <div class="service-box">
+                    <h3>Business Ideas</h3>
+                    <p>From concept to creation. Explore business ideas and build your entrepreneurial journey.</p>
+                </div>
+                <div class="service-box">
+                    <h3>Expert Support</h3>
+                    <p>Thrive, not just survive</p>
+                    <p>Get expert guidance on prioritizing your health</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gold Chart Section -->
+    <!-- <section class="gold-chart-section">
+        <div class="container">
+        </div>
+    </section> -->
+
+<br></br>
+    <!-- Banner Section -->
+    <section>
+        <div class="container">
+          <center>
+          <a href="https://one.justmarkets.link/a/ffrhc0iuso" referrerpolicy="no-referrer-when-downgrade"><img src="images/jm.jpg" style="max-width: 500px; width: 100%; height: auto;" /></a>
+          </center>
+        </div>
+		
+		         <center>
+                    <!--            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+                    <!-- AhlamWeb_Box -->
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-8234881172646345"
+                         data-ad-slot="9286012288"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                </center>
+				
+    </section>
+
+<br></br>
+    <!-- Latest Market Analysis -->
+    <section id="analysis">
+        <div class="container">
+            <h2 class="section-title">Latest Market Analysis</h2>
+            
+
+		  
+            <!-- Articles Grid - n8n will populate this -->
+    <div class="articles-grid" id="articlesGrid">
+        <article class="article-card" data-date="2026-03-09T00:00:00.702Z">
+    <div class="article-image"><span style="font-size: 3rem;">₿</span></div>
+    <div class="article-content">
+        <div class="article-meta">
+            <span>📅 Mar 9</span>
+            <span>🏷️ Cryptocurrency</span>
+        </div>
+        <h3>Bitcoin Analysis - 2026-03-09-00-00</h3>
+        <p>Bitcoin price analysis: $66060, bearish trend with -6.75% change....</p>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
+            <span style="background: #ef4444; color: white; padding: 4px 10px; border-radius: 4px; font-size: 13px;">
+                📉 -6.75%
+            </span>
+            <a href="/articles/btc-usd-analysis-2026-03-09-00-00.html" style="color: #fbbf24; text-decoration: none; font-weight: 500;">Read Analysis →</a>
+        </div>
+    </div>
+</article>
+        <article class="article-card" data-date="2026-03-09T00:00:00.702Z">
+    <div class="article-image"><span style="font-size: 3rem;">₿</span></div>
+    <div class="article-content">
+        <div class="article-meta">
+            <span>📅 Mar 9</span>
+            <span>🏷️ Cryptocurrency</span>
+        </div>
+        <h3>Ethereum Analysis - 2026-03-09-00-00</h3>
+        <p>Ethereum price analysis: $1938, bearish trend with -6.47% change....</p>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
+            <span style="background: #ef4444; color: white; padding: 4px 10px; border-radius: 4px; font-size: 13px;">
+                📉 -6.47%
+            </span>
+            <a href="/articles/eth-usd-analysis-2026-03-09-00-00.html" style="color: #fbbf24; text-decoration: none; font-weight: 500;">Read Analysis →</a>
+        </div>
+    </div>
+</article>
+        <article class="article-card" data-date="2026-03-09T00:00:00.702Z">
+    <div class="article-image"><span style="font-size: 3rem;">₿</span></div>
+    <div class="article-content">
+        <div class="article-meta">
+            <span>📅 Mar 9</span>
+            <span>🏷️ Cryptocurrency</span>
+        </div>
+        <h3>Solana Analysis - 2026-03-09-00-00</h3>
+        <p>Solana price analysis: $81.67, bearish trend with -7.91% change....</p>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
+            <span style="background: #ef4444; color: white; padding: 4px 10px; border-radius: 4px; font-size: 13px;">
+                📉 -7.91%
+            </span>
+            <a href="/articles/sol-usd-analysis-2026-03-09-00-00.html" style="color: #fbbf24; text-decoration: none; font-weight: 500;">Read Analysis →</a>
+        </div>
+    </div>
+</article>
+        <article class="article-card" data-date="2026-03-09T00:00:00.702Z">
+    <div class="article-image"><span style="font-size: 3rem;">₿</span></div>
+    <div class="article-content">
+        <div class="article-meta">
+            <span>📅 Mar 9</span>
+            <span>🏷️ Cryptocurrency</span>
+        </div>
+        <h3>Ripple Analysis - 2026-03-09-00-00</h3>
+        <p>Ripple price analysis: $1.34, bearish trend with -4.33% change....</p>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
+            <span style="background: #ef4444; color: white; padding: 4px 10px; border-radius: 4px; font-size: 13px;">
+                📉 -4.33%
+            </span>
+            <a href="/articles/xrp-usd-analysis-2026-03-09-00-00.html" style="color: #fbbf24; text-decoration: none; font-weight: 500;">Read Analysis →</a>
+        </div>
+    </div>
+</article>
+        <article class="article-card" data-date="2026-03-08T00:00:01.899Z">
+    <div class="article-image"><span style="font-size: 3rem;">₿</span></div>
+    <div class="article-content">
+        <div class="article-meta">
+            <span>📅 Mar 8</span>
+            <span>🏷️ Cryptocurrency</span>
+        </div>
+        <h3>Bitcoin Analysis - 2026-03-08-00-00</h3>
+        <p>Bitcoin price analysis: $67268, bearish trend with -7.49% change....</p>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
+            <span style="background: #ef4444; color: white; padding: 4px 10px; border-radius: 4px; font-size: 13px;">
+                📉 -7.49%
+            </span>
+            <a href="/articles/btc-usd-analysis-2026-03-08-00-00.html" style="color: #fbbf24; text-decoration: none; font-weight: 500;">Read Analysis →</a>
+        </div>
+    </div>
+</article>
+        <article class="article-card" data-date="2026-03-08T00:00:01.899Z">
+    <div class="article-image"><span style="font-size: 3rem;">₿</span></div>
+    <div class="article-content">
+        <div class="article-meta">
+            <span>📅 Mar 8</span>
+            <span>🏷️ Cryptocurrency</span>
+        </div>
+        <h3>Ethereum Analysis - 2026-03-08-00-00</h3>
+        <p>Ethereum price analysis: $1969, bearish trend with -7.39% change....</p>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
+            <span style="background: #ef4444; color: white; padding: 4px 10px; border-radius: 4px; font-size: 13px;">
+                📉 -7.39%
+            </span>
+            <a href="/articles/eth-usd-analysis-2026-03-08-00-00.html" style="color: #fbbf24; text-decoration: none; font-weight: 500;">Read Analysis →</a>
+        </div>
+    </div>
+</article>
+        <article class="article-card" data-date="2026-03-08T00:00:01.900Z">
+    <div class="article-image"><span style="font-size: 3rem;">₿</span></div>
+    <div class="article-content">
+        <div class="article-meta">
+            <span>📅 Mar 8</span>
+            <span>🏷️ Cryptocurrency</span>
+        </div>
+        <h3>Solana Analysis - 2026-03-08-00-00</h3>
+        <p>Solana price analysis: $83.17, bearish trend with -8.44% change....</p>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
+            <span style="background: #ef4444; color: white; padding: 4px 10px; border-radius: 4px; font-size: 13px;">
+                📉 -8.44%
+            </span>
+            <a href="/articles/sol-usd-analysis-2026-03-08-00-00.html" style="color: #fbbf24; text-decoration: none; font-weight: 500;">Read Analysis →</a>
+        </div>
+    </div>
+</article>
+        <article class="article-card" data-date="2026-03-08T00:00:01.900Z">
+    <div class="article-image"><span style="font-size: 3rem;">₿</span></div>
+    <div class="article-content">
+        <div class="article-meta">
+            <span>📅 Mar 8</span>
+            <span>🏷️ Cryptocurrency</span>
+        </div>
+        <h3>Ripple Analysis - 2026-03-08-00-00</h3>
+        <p>Ripple price analysis: $1.36, bearish trend with -5.17% change....</p>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
+            <span style="background: #ef4444; color: white; padding: 4px 10px; border-radius: 4px; font-size: 13px;">
+                📉 -5.17%
+            </span>
+            <a href="/articles/xrp-usd-analysis-2026-03-08-00-00.html" style="color: #fbbf24; text-decoration: none; font-weight: 500;">Read Analysis →</a>
+        </div>
+    </div>
+</article>
+        <article class="article-card" data-date="2026-03-07T00:00:01.333Z">
+    <div class="article-image"><span style="font-size: 3rem;">₿</span></div>
+    <div class="article-content">
+        <div class="article-meta">
+            <span>📅 Mar 7</span>
+            <span>🏷️ Cryptocurrency</span>
+        </div>
+        <h3>Bitcoin Analysis - 2026-03-07-00-00</h3>
+        <p>Bitcoin price analysis: $68106, bearish trend with -0.28% change....</p>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
+            <span style="background: #ef4444; color: white; padding: 4px 10px; border-radius: 4px; font-size: 13px;">
+                📉 -0.28%
+            </span>
+            <a href="/articles/btc-usd-analysis-2026-03-07-00-00.html" style="color: #fbbf24; text-decoration: none; font-weight: 500;">Read Analysis →</a>
+        </div>
+    </div>
+</article>
+      </div><!-- articlesGrid -->
+
+            <button class="load-more-btn" id="loadMoreBtn">Load More Articles</button>
+        </div>
+		
+		  
+    </section>
+	
+	                   <center>
+                    <!--            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+                    <!-- AhlamWeb_Box -->
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-8234881172646345"
+                         data-ad-slot="9286012288"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                </center>
+
+    <!-- Banner Section -->
+    <section>
+        <div class="container">
+          <center>
+          <a href="https://one.justmarkets.link/a/ffrhc0iuso" referrerpolicy="no-referrer-when-downgrade"><img src="images/jmbanner.jpg" style="max-width: 1024	px; width: 100%; height: auto;" /></a>
+          </center>
+        </div>
+    </section>
+	
+
+    <!-- Education Section -->
+    <section class="education-section" id="education">
+        <div class="container">
+            <h2 class="section-title">Trading Education</h2>
+            <p style="text-align: center; color: var(--text-secondary); max-width: 600px; margin: 0 auto 3rem;">
+                Start your trading journey with our curated educational resources
+            </p>
+
+            <div class="education-categories">
+                <!-- Books Section -->
+                <div class="education-card">
+                    <h3>📚 Recommended Books</h3>
+                    <ul class="resource-list">
+                        <li><a href="#" target="_blank">📖 Technical Analysis of Financial Markets</a></li>
+                        <li><a href="#" target="_blank">📖 Trading in the Zone - Mark Douglas</a></li>
+                        <li><a href="#" target="_blank">📖 Japanese Candlestick Charting</a></li>
+                        <li><a href="#" target="_blank">📖 Market Wizards - Jack Schwager</a></li>
+                        <li><a href="#" target="_blank">📖 The Intelligent Investor</a></li>
+                    </ul>
+                </div>
+
+                <!-- PDF Resources -->
+                <div class="education-card">
+                    <h3>📄 Free PDF Guides</h3>
+                    <ul class="resource-list">
+                        <li><a href="#" download>📥 Forex Trading Basics (PDF)</a></li>
+                        <li><a href="#" download>📥 Risk Management Guide (PDF)</a></li>
+                        <li><a href="#" download>📥 Candlestick Patterns Cheat Sheet</a></li>
+                        <li><a href="#" download>📥 Trading Psychology Guide</a></li>
+                        <li><a href="#" download>📥 Technical Indicators Explained</a></li>
+                    </ul>
+                </div>
+
+                <!-- YouTube Channels -->
+                <div class="education-card">
+                    <h3>🎥 YouTube Channels</h3>
+                    <ul class="resource-list">
+                        <li><a href="https://youtube.com" target="_blank">▶️ The Trading Channel</a></li>
+                        <li><a href="https://youtube.com" target="_blank">▶️ Forex School Online</a></li>
+                        <li><a href="https://youtube.com" target="_blank">▶️ Rayner Teo Trading</a></li>
+                        <li><a href="https://youtube.com" target="_blank">▶️ No Nonsense Forex</a></li>
+                        <li><a href="https://youtube.com" target="_blank">▶️ The Chart Guys</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <h2 class="section-title">About <span style="color: var(--accent-gold);">Us</span></h2>
+            <p style="text-align: center; color: var(--text-secondary); max-width: 600px; margin: 0 auto 3rem;">
+                DrMSI empowers your journey with curated knowledge and expert guidance across finance, health, and exploration.
+            </p>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="images/about-img.png" alt="About DrMSI">
+                </div>
+                <div class="about-text">
+                    <h3>We Are All DrMSI</h3>
+                    <p>Explore, learn, and thrive with DrMSI, your one-stop shop for personal growth.</p>
+                    <p>We provide a wealth of curated content and expert support across various aspects of your life:</p>
+                    <p><strong>Master your finances:</strong> Gain insights from market analysis and explore business ideas to fuel your success.</p>
+                    <p><strong>Prioritize your health:</strong> Connect with experts and access valuable resources to achieve optimal well-being.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NFT Market Section -->
+    <section class="nft-section" id="nft">
+        <div class="container">
+            <h2 class="section-title">DrMSI NFT <span style="color: var(--accent-gold);">Market</span></h2>
+            <p style="text-align: center; color: var(--text-secondary); max-width: 700px; margin: 0 auto;">
+                Collect, create, and connect. DRMSI NFT Marketplace empowers you to buy, sell, and mint unique digital assets. Join a thriving community of creators and collectors.
+            </p>
+
+            <center>
+                <a href="https://www.binance.com/en/nft/my-nfts/collected/drmsi-962360a9eb4143c08addef6f254406db" class="view-all-btn" target="_blank">
+                    View All NFT Collection
+                </a>
+            </center>
+
+            <div class="nft-grid">
+                <div class="nft-card">
+                    <a href="https://www.binance.com/en/nft/item/89765353" target="_blank">
+                        <div class="nft-image">
+                            <img src="https://public.nftstatic.com/static/nft/res/nft-cex/S3/1712780182157_t3lgx46rltf14d1c2kivmq7a3ncl5yqb.jpeg" alt="Geo Eagle logo">
+                        </div>
+                    </a>
+                    <div class="nft-details">
+                        <h4>Geo Eagle Logo</h4>
+                        <p class="nft-author">DrMSI</p>
+                        <p>An eagle in geometric style, facing forward with wings outstretched...</p>
+                    </div>
+                </div>
+
+                <div class="nft-card">
+                    <a href="https://www.binance.com/en/nft/item/89765365" target="_blank">
+                        <div class="nft-image">
+                            <img src="https://public.nftstatic.com/static/nft/res/nft-cex/S3/1712811623198_s8v4lu2d3ol72tkmp4m3ymkvxv06av7i.jpeg" alt="The Perilous Crossing">
+                        </div>
+                    </a>
+                    <div class="nft-details">
+                        <h4>The Perilous Crossing</h4>
+                        <p class="nft-author">DrMSI</p>
+                        <p>A daring voyage in cubist style, ship navigating treacherous passage...</p>
+                    </div>
+                </div>
+
+                <div class="nft-card">
+                    <a href="https://www.binance.com/en/nft/item/89765364" target="_blank">
+                        <div class="nft-image">
+                            <img src="https://public.nftstatic.com/static/nft/res/nft-cex/S3/1712810748728_m2fe0rqncypc7l2e7qdd83lvgg0bv7ll.jpeg" alt="The Glowing Olive Lamp">
+                        </div>
+                    </a>
+                    <div class="nft-details">
+                        <h4>The Glowing Olive Lamp</h4>
+                        <p class="nft-author">DrMSI</p>
+                        <p>A lamp trapped within a bottle, reimagined in cubist style...</p>
+                    </div>
+                </div>
+
+                <div class="nft-card">
+                    <a href="https://www.binance.com/en/nft/item/89765363" target="_blank">
+                        <div class="nft-image">
+                            <img src="https://public.nftstatic.com/static/nft/res/nft-cex/S3/1712809896715_eewhbiv6rkt3ktqpzgi0o0bay0x7dmmw.jpeg" alt="Cubist Cat Chaos">
+                        </div>
+                    </a>
+                    <div class="nft-details">
+                        <h4>Cubist Cat Chaos</h4>
+                        <p class="nft-author">DrMSI</p>
+                        <p>Playful battle between two cats in cubist style...</p>
+                    </div>
+                </div>
+
+                <div class="nft-card">
+                    <a href="https://www.binance.com/en/nft/item/89765362" target="_blank">
+                        <div class="nft-image">
+                            <img src="https://public.nftstatic.com/static/nft/res/nft-cex/S3/1712809206435_s9yhlv1gne6qmc032pdvd4yzp13pm2b3.jpeg" alt="Majestic Whale">
+                        </div>
+                    </a>
+                    <div class="nft-details">
+                        <h4>Majestic Whale</h4>
+                        <p class="nft-author">DrMSI</p>
+                        <p>A majestic creature reimagined in fresh, fragmented perspective...</p>
+                    </div>
+                </div>
+
+                <div class="nft-card">
+                    <a href="https://www.binance.com/en/nft/item/89765358" target="_blank">
+                        <div class="nft-image">
+                            <img src="https://public.nftstatic.com/static/nft/res/nft-cex/S3/1712795351490_w8bdh29hw2aej4p79p7xzryab3fn6cau.jpeg" alt="Al-Aqsa Mosque">
+                        </div>
+                    </a>
+                    <div class="nft-details">
+                        <h4>Al-Aqsa Mosque</h4>
+                        <p class="nft-author">DrMSI</p>
+                        <p>Al-Aqsa Mosque in cubist style with olive trees...</p>
+                    </div>
+                </div>
+            </div>
+
+            <center>
+                <a href="https://www.binance.com/en/nft/my-nfts/collected/drmsi-962360a9eb4143c08addef6f254406db" class="view-all-btn" target="_blank">
+                    View All DrMSI Market Listing
+                </a>
+            </center>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>DRMSI</h4>
+                    <p style="color: var(--text-secondary);">Your all-in-one guide to success. Explore curated insights on investments, business ideas, health, and more. Empower yourself, transform your life.</p>
+                    <div class="social-links" style="margin-top: 1rem;">
+                        <a href="https://fb.com/drmsi86" target="_blank" title="Facebook">📘</a>
+                        <a href="https://x.com/drmsi86" target="_blank" title="Twitter">𝕏</a>
+                        <a href="https://www.linkedin.com/in/drmsi/" target="_blank" title="LinkedIn">💼</a>
+                        <a href="https://www.instagram.com/drmsi" target="_blank" title="Instagram">📷</a>
+                        <a href="https://www.youtube.com/@drmsi86" target="_blank" title="YouTube">▶</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#analysis">Market Analysis</a></li>
+                        <li><a href="#education">Education</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Trading Signals</a></li>
+                        <li><a href="#">Market News</a></li>
+                        <li><a href="#">Economic Calendar</a></li>
+                        <li><a href="#">Trading Tools</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="/policy.html">Privacy Policy</a></li>
+                        <li><a href="#">Risk Disclosure</a></li>
+                        <li><a href="#">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 DRMSI. All rights reserved. Trading involves substantial risk of loss.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Article Loading with jQuery
+        let allArticleFiles = [];
+        let currentIndex = 4; // Start after the 4 initially displayed articles
+        const articlesPerPage = 3;
+
+        // Fetch list of articles from GitHub API
+        $.ajax({
+            url: 'https://api.github.com/repos/drmsi/drmsi.com/contents/articles',
+            dataType: 'json',
+            success: function(files) {
+                // Filter HTML files and sort by name (which includes date)
+                allArticleFiles = files
+                    .filter(file => file.name.endsWith('.html'))
+                    .sort((a, b) => b.name.localeCompare(a.name)); // Reverse alphabetical = newest first
+
+                // Check if there are more articles to load
+                if (currentIndex >= allArticleFiles.length) {
+                    $('#loadMoreBtn').hide();
+                }
+            },
+            error: function() {
+                console.error('Failed to load articles from GitHub');
+                $('#loadMoreBtn').hide();
+            }
+        });
+
+        // Load More Button functionality
+        $('#loadMoreBtn').on('click', function() {
+            const $btn = $(this);
+            const articlesGrid = $('#articlesGrid');
+
+            // Show loading state
+            $btn.text('Loading...').prop('disabled', true);
+
+            // Get next batch of articles
+            const nextArticles = allArticleFiles.slice(currentIndex, currentIndex + articlesPerPage);
+
+            // Load each article HTML
+            let loadedCount = 0;
+            nextArticles.forEach(file => {
+                $.ajax({
+                    url: `/articles/${file.name}`,
+                    dataType: 'html',
+                    success: function(html) {
+                        // Parse the HTML to extract article content
+                        const $html = $('<div>').html(html);
+
+                        // Extract article metadata and content
+                        const title = $html.find('h1').first().text() || file.name.replace('.html', '');
+                        const articleMeta = $html.find('.article-meta').first().html() || '';
+                        const articleContent = $html.find('article').first().html() || '';
+
+                        // Extract date from filename for sorting
+                        const dateMatch = file.name.match(/(\d{4})-(\d{2})-(\d{2})/);
+                        const timestamp = dateMatch ? `${dateMatch[1]}-${dateMatch[2]}-${dateMatch[3]}` : '';
+
+                        // Create article card with full content
+                        const articleCard = `
+                            <article class="article-card" data-date="${timestamp}" style="grid-column: 1 / -1; max-width: 100%;">
+                                <div class="article-content" style="padding: 2rem;">
+                                    ${articleContent}
+                                </div>
+                            </article>
+                        `;
+
+                        articlesGrid.append(articleCard);
+
+                        loadedCount++;
+                        if (loadedCount === nextArticles.length) {
+                            // All articles loaded
+                            currentIndex += articlesPerPage;
+
+                            // Reset button state
+                            if (currentIndex >= allArticleFiles.length) {
+                                $btn.fadeOut();
+                            } else {
+                                $btn.text('Load More Articles').prop('disabled', false);
+                            }
+                        }
+                    },
+                    error: function() {
+                        console.error('Failed to load article:', file.name);
+                        loadedCount++;
+                        if (loadedCount === nextArticles.length) {
+                            $btn.text('Load More Articles').prop('disabled', false);
+                        }
+                    }
+                });
+            });
+
+            // If no articles to load
+            if (nextArticles.length === 0) {
+                $btn.fadeOut();
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+
+    <!-- Cookie Consent Script -->
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+    <script>
+    window.addEventListener('load', function() {
+      window.cookieconsent.initialise({
+        "palette": {
+          "popup": {
+            "background": "#1a1a1a",
+            "text": "#ffffff"
+          },
+          "button": {
+            "background": "#fbbf24",
+            "text": "#0f0f0f"
+          }
+        },
+        "type": "opt-in",
+        "content": {
+          "message": "We use cookies and similar technologies to provide the best experience on our website, including personalized ads and analytics.",
+          "dismiss": "Decline",
+          "allow": "Accept All",
+          "link": "Learn more",
+          "href": "/policy.html",
+          "policy": "Cookie Policy"
+        },
+        onStatusChange: function(status) {
+          if (this.hasConsented()) {
+            // User accepted - grant consent
+            gtag('consent', 'update', {
+              'ad_storage': 'granted',
+              'ad_user_data': 'granted',
+              'ad_personalization': 'granted',
+              'analytics_storage': 'granted'
+            });
+          } else {
+            // User declined - keep consent denied
+            gtag('consent', 'update', {
+              'ad_storage': 'denied',
+              'ad_user_data': 'denied',
+              'ad_personalization': 'denied',
+              'analytics_storage': 'denied'
+            });
+          }
+        },
+        onInitialise: function(status) {
+          if (this.hasConsented()) {
+            // User previously accepted
+            gtag('consent', 'update', {
+              'ad_storage': 'granted',
+              'ad_user_data': 'granted',
+              'ad_personalization': 'granted',
+              'analytics_storage': 'granted'
+            });
+          }
+        }
+      });
+    });
+    </script>
+
+</body>
+</html>
